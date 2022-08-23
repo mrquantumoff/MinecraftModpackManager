@@ -1,0 +1,12 @@
+{
+  "phrases": [
+    {
+      "name": "productName",
+      "value": "Minecraft modpack manager"
+    },
+    {
+      "name": "modpackSelectorText",
+      "value": "Select your Minecraft modpack"
+    }
+  ]
+}

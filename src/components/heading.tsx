@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography } from "@mui/material";
 import "./heading.css";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+import lang, { getLanguageTranslation } from "../common/translation";
 
 export default function Heading() {
+  const [productName, setProductName] = useState();
+  const f = async () => {
+    setProductName(await getLanguageTranslation(lang, "productName"));
+  };
+  f.call("");
   return (
     <>
       <div>
         <Typography variant="h3" className="heading">
-          Minecraft Modpack manager
+          {productName}
         </Typography>
       </div>
     </>
