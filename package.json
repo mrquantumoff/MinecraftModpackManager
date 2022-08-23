@@ -12,18 +12,30 @@
     "buildt": "tauri build"
   },
   "dependencies": {
+    "@babel/core": "^7.18.13",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/material": "^5.10.2",
+    "@mui/styled-engine-sc": "^5.10.1",
+    "@tauri-apps/api": "^1.0.2",
+    "babel": "^6.23.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@tauri-apps/api": "^1.0.2"
+    "react-is": "^18.2.0",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^1.0.5",
     "@types/node": "^18.7.11",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",
+    "autoprefixer": "^10.4.8",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8",
     "typescript": "^4.7.4",
-    "vite": "^3.0.9",
-    "@tauri-apps/cli": "^1.0.5"
+    "vite": "^3.0.9"
   },
   "packageManager": "pnpm@7.9.4"
 }
