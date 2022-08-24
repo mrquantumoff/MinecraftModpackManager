@@ -9,29 +9,31 @@ export enum Language {
   tr = "tr",
 }
 
-let strings = {};
+import { default as enTranslation } from "../translations/en";
 
-let lang = "en";
+let lang: string = "en";
 
 export default lang;
 
 export async function getLanguageTranslation(
   language: string,
-  phraseName: any
+  phraseName: string
 ) {
-  const file = await join(
-    dataDirPath,
-    "mcmodpackmanagerbymrquantumoff",
-    "languages",
-    language + ".json"
-  );
   try {
-    const conts = await readTextFile(file);
-    const obj = JSON.parse(conts);
-    return obj.phrases[0].name;
+    switch (language) {
+      case "en": {
+        switch (phraseName) {
+          case "productName": {
+            return enTranslation.productName;
+          }
+          case "modpackSelectorText": {
+            return enTranslation.modpackSelectorText;
+          }
+        }
+      }
+    }
+    return "";
   } catch (e) {
-    return (
-      "Failed to load translation file: " + language + " Phrase: " + phraseName
-    );
+    return "Failed to load translation: " + language + " Phrase: " + phraseName;
   }
 }

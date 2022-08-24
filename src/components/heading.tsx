@@ -4,7 +4,7 @@ import "./heading.css";
 import lang, { getLanguageTranslation } from "../common/translation";
 
 export default function Heading() {
-  const [productName, setProductName] = useState();
+  const [productName, setProductName] = useState("");
   const f = async () => {
     setProductName(await getLanguageTranslation(lang, "productName"));
   };
