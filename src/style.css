@@ -1,8 +1,11 @@
 .container {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 html {
-  @apply bg-zinc-900 text-slate-200;
+  background-color: #121212;
+  color: #fff;
 }
