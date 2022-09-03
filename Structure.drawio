@@ -1,1 +1,58 @@
-<mxfile host="app.diagrams.net" modified="2022-09-03T07:06:28.903Z" agent="5.0 (Windows)" version="20.2.8" etag="_X8TCJBV58SFnLQA4rAr" type="github"><diagram id="HJep47vySZXAAmUKjS3l">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-09-03T07:22:07.568Z" agent="5.0 (Windows)" etag="h2PqwAZdWdZo3F2Tj2i3" version="20.2.8" type="github">
+  <diagram id="HJep47vySZXAAmUKjS3l" name="Page-1">
+    <mxGraphModel dx="1678" dy="889" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="tY8yfRuHIlviiyJxR2of-1" value="&lt;div&gt;.minecraft&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-2" value="&lt;div&gt;Modpacks&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-3" value="&lt;div&gt;{modpackname}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-4" value="&lt;div&gt;modpack.json&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tY8yfRuHIlviiyJxR2of-1" target="tY8yfRuHIlviiyJxR2of-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="490" as="sourcePoint" />
+            <mxPoint x="450" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-6" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tY8yfRuHIlviiyJxR2of-2" target="tY8yfRuHIlviiyJxR2of-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="490" as="sourcePoint" />
+            <mxPoint x="450" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-7" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tY8yfRuHIlviiyJxR2of-3" target="tY8yfRuHIlviiyJxR2of-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="430" as="sourcePoint" />
+            <mxPoint x="450" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-8" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="tY8yfRuHIlviiyJxR2of-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="690" as="sourcePoint" />
+            <mxPoint x="450" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-9" value="" style="swimlane;startSize=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="680" width="500" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-10" value="&lt;div&gt;displayName&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="tY8yfRuHIlviiyJxR2of-9">
+          <mxGeometry x="360" y="20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-11" value="&lt;div&gt;gameVersion&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="tY8yfRuHIlviiyJxR2of-9">
+          <mxGeometry x="20" y="20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="tY8yfRuHIlviiyJxR2of-12" value="&lt;div&gt;modLoader&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="tY8yfRuHIlviiyJxR2of-9">
+          <mxGeometry x="180" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
