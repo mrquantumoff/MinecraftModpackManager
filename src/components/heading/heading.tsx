@@ -5,10 +5,8 @@ import "./heading.css";
 export default function Heading() {
   return (
     <>
-      <div>
-        <Typography variant="h3" className="heading">
-          {"Minecraft Modpack Manager"}
-        </Typography>
+      <div className="heading">
+        <Typography variant="h3">{"Minecraft Modpack Manager"}</Typography>
       </div>
     </>
   );
