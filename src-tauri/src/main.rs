@@ -19,10 +19,7 @@ async fn main() {
 
 /// Shoud create a new folder called Modpacks in .minecraft (if not exists)
 /// Will iterate through all subfolders
-/// Will try to read and/or create a file called "modpack.json" with data about mod loader, game version, displayName of the modpack
-/// Then it will add the display name to the options vector
 /// In the end it should return the options vector
-/// todo: the function itself
 #[tauri::command]
 async fn get_modpack_options(minecraftfolder: String) -> Result<Vec<String>, String> {
     let _mdpckpath = PathBuf::from(minecraftfolder).join("modpacks");
