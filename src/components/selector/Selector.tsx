@@ -87,6 +87,7 @@ export default function Selector() {
         setProgress(
           <>
             <Alert severity="info">Updating modpack manager...</Alert>
+            <br></br>
             <CircularProgress />
           </>
         );
