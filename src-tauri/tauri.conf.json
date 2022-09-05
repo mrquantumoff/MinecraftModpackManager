@@ -14,7 +14,7 @@
       "all": true,
       "fs": {
         "all": true,
-        "scope": ["$DATA/*"]
+        "scope": ["*"]
       },
       "path": {
         "all": true
@@ -25,8 +25,8 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
-      "copyright": "",
+      "category": "Utility",
+      "copyright": "2022, Mr. Quantum (Demir Yerli) and contributors with open source libraries",
       "deb": {
         "depends": []
       },
@@ -68,7 +68,8 @@
         "height": 600,
         "resizable": false,
         "title": "Minecraft Modpack Manager",
-        "width": 800
+        "width": 800,
+        "fileDropEnabled": false
       }
     ]
   }

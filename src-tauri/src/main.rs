@@ -44,13 +44,17 @@ async fn get_modpack_options(minecraftfolder: String) -> Result<Vec<String>, Str
                             {
                                 let path = entry.path().to_str().unwrap().to_string();
                                 let split: Vec<&str> = path.split("/").collect();
-                                out.push(split[split.len() - 1].to_string());
+                                if split[split.len() - 1].to_string() != "free" {
+                                    out.push(split[split.len() - 1].to_string());
+                                }
                             }
                             #[cfg(windows)]
                             {
                                 let path = entry.path().to_str().unwrap().to_string();
                                 let split: Vec<&str> = path.split("\\").collect();
-                                out.push(split[split.len() - 1].to_string());
+                                if split[split.len() - 1].to_string() != "free" {
+                                    out.push(split[split.len() - 1].to_string());
+                                }
                             }
                         }
                     }
@@ -84,13 +88,13 @@ async fn clear_modpack(minecraftfolder: String) -> Result<(), String> {
         }
     }
 
-    if PathBuf::from(&minecraftfolder).join("mods").exists() {
-        let res = std::fs::remove_dir_all(PathBuf::from(&minecraftfolder).join("mods"));
-        match res {
-            Ok(_) => {}
-            Err(_) => return Err("Failed removing mods".to_string()),
-        }
-    }
+    // if PathBuf::from(&minecraftfolder).join("mods").exists() {
+    //     let res = std::fs::remove_dir_all(PathBuf::from(&minecraftfolder).join("mods"));
+    //     match res {
+    //         Ok(_) => {}
+    //         Err(_) => return Err("Failed removing mods".to_string()),
+    //     }
+    // }
 
     #[cfg(unix)]
     {
@@ -100,7 +104,7 @@ async fn clear_modpack(minecraftfolder: String) -> Result<(), String> {
         );
         match res {
             Ok(_) => return Ok(()),
-            Err(_) => return Err("Failed to create a symlink to free modpack folder".to_string()),
+            Err(e) => return Err("Failed to create a symlink to free modpack folder".to_string()),
         }
     }
     #[cfg(windows)]
@@ -111,7 +115,12 @@ async fn clear_modpack(minecraftfolder: String) -> Result<(), String> {
         );
         match res {
             Ok(_) => return Ok(()),
-            Err(_) => return Err("Failed to create a symlink to free modpack folder".to_string()),
+            Err(e) => {
+                return Err(
+                    "Failed to create a symlink to free modpack folder: ".to_string()
+                        + &e.kind().to_string(),
+                )
+            }
         }
     }
     return Err("Unknown os".to_string());

@@ -6,28 +6,49 @@ import getMinecraftFolder from "../../tools/getMinecraftFolder";
 import "./Selector.css";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import { platform } from "@tauri-apps/api/os";
 import { Alert, CircularProgress } from "@mui/material";
+import getCurrentModpack, {
+  setCurrentModpack,
+} from "../../tools/currentModpack";
 
 export default function Selector() {
   const [options, setOptions] = useState(["No options"]);
   const [isAutoCompleteActive, setIsAutoCompleteActive] =
     useState<boolean>(true);
   const [progress, setProgress] = useState<any>(null);
+  const [defaultValue, setDefaultValue] = useState<any>(getCurrentModpack());
   // Set mods folder free
   const setModsFree = async () => {
     const mcFolder = await getMinecraftFolder();
-
+    const os = await platform();
     setIsAutoCompleteActive(false);
     setProgress(<CircularProgress />);
     try {
       await invoke("clear_modpack", { minecraftfolder: mcFolder });
       setIsAutoCompleteActive(true);
       setProgress(null);
+      setCurrentModpack(null);
     } catch (err) {
       console.error(err);
-      setProgress(<Alert severity="error">"Failed to clear modpacks"</Alert>);
+      if (os == "win32") {
+        setCurrentModpack(null);
+        setProgress(
+          <Alert severity="error">
+            Failed to clear modpacks, try running the app as admin
+          </Alert>
+        );
+      } else {
+        setProgress(<Alert severity="error">Failed to clear modpacks</Alert>);
+      }
       setIsAutoCompleteActive(true);
     }
+  };
+
+  const applyModpack = async () => {
+    try {
+      setCurrentModpack(autoCompleteValue);
+    } catch (e) {}
   };
 
   // Gets options from the backend
@@ -45,7 +66,9 @@ export default function Selector() {
     }
   };
 
-  func.call({});
+  useEffect(() => {
+    func.call({});
+  }, []);
 
   const [autoCompleteValue, setAutoCompleteValue] = useState<string | null>(
     null
@@ -65,6 +88,7 @@ export default function Selector() {
           sx={{ width: 290 }}
           value={autoCompleteValue}
           readOnly={!isAutoCompleteActive}
+          defaultValue={defaultValue}
           onChange={(event: any, newValue: null | string) => {
             console.log("Autocomplete value: " + newValue);
             if (typeof newValue === "string") {

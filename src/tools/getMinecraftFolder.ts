@@ -5,7 +5,6 @@ import { readTextFile } from "@tauri-apps/api/fs";
 // Gets the .minecraft folder
 export default async function getMinecraftFolder() {
   let plt = await platform();
-  console.log(plt);
   if (plt === "darwin") {
     return await join(
       await homeDir(),
