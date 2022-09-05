@@ -12,7 +12,7 @@ use std::fs::create_dir_all;
 #[tokio::main]
 async fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![get_modpack_options])
+        .invoke_handler(tauri::generate_handler![get_modpack_options, clear_modpack])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -61,4 +61,58 @@ async fn get_modpack_options(minecraftfolder: String) -> Result<Vec<String>, Str
         Err(_) => return Err("Failed to read modpack folder".to_string()),
     }
     return Ok(out);
+}
+
+#[allow(unreachable_code)]
+#[tauri::command]
+async fn clear_modpack(minecraftfolder: String) -> Result<(), String> {
+    println!(
+        "{} \n{}",
+        &minecraftfolder,
+        PathBuf::from(&minecraftfolder)
+            .join("mods")
+            .to_str()
+            .unwrap()
+    );
+    let _mdpckpath = PathBuf::from(&minecraftfolder).join("modpacks");
+    if !_mdpckpath.join("free").exists() {
+        // Create a new folder
+        let res = create_dir_all(&_mdpckpath.join("free"));
+        match res {
+            Ok(_) => {}
+            Err(_) => return Err("Failed to create free modpack folder".to_string()),
+        }
+    }
+
+    if PathBuf::from(&minecraftfolder).join("mods").exists() {
+        let res = std::fs::remove_dir_all(PathBuf::from(&minecraftfolder).join("mods"));
+        match res {
+            Ok(_) => {}
+            Err(_) => return Err("Failed removing mods".to_string()),
+        }
+    }
+
+    #[cfg(unix)]
+    {
+        let res = std::os::unix::fs::symlink(
+            &_mdpckpath.join("free"),
+            PathBuf::from(minecraftfolder).join("mods"),
+        );
+        match res {
+            Ok(_) => return Ok(()),
+            Err(_) => return Err("Failed to create a symlink to free modpack folder".to_string()),
+        }
+    }
+    #[cfg(windows)]
+    {
+        let res = std::os::windows::fs::symlink_dir(
+            &_mdpckpath.join("free"),
+            PathBuf::from(minecraftfolder).join("mods"),
+        );
+        match res {
+            Ok(_) => return Ok(()),
+            Err(_) => return Err("Failed to create a symlink to free modpack folder".to_string()),
+        }
+    }
+    return Err("Unknown os".to_string());
 }

@@ -1553,6 +1553,7 @@ dependencies = [
  "tauri",
  "tauri-build",
  "tokio",
+ "winres",
 ]
 
 [[package]]

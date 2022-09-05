@@ -6,9 +6,8 @@ import getMinecraftFolder from "../../tools/getMinecraftFolder";
 import "./Selector.css";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import { CircularProgress } from "@mui/material";
+import { Alert, CircularProgress } from "@mui/material";
 
-const mcFolder = await getMinecraftFolder();
 export default function Selector() {
   const [options, setOptions] = useState(["No options"]);
   const [isAutoCompleteActive, setIsAutoCompleteActive] =
@@ -16,12 +15,25 @@ export default function Selector() {
   const [progress, setProgress] = useState<any>(null);
   // Set mods folder free
   const setModsFree = async () => {
+    const mcFolder = await getMinecraftFolder();
+
     setIsAutoCompleteActive(false);
     setProgress(<CircularProgress />);
+    try {
+      await invoke("clear_modpack", { minecraftfolder: mcFolder });
+      setIsAutoCompleteActive(true);
+      setProgress(null);
+    } catch (err) {
+      console.error(err);
+      setProgress(<Alert severity="error">"Failed to clear modpacks"</Alert>);
+      setIsAutoCompleteActive(true);
+    }
   };
 
   // Gets options from the backend
   const func = async () => {
+    const mcFolder = await getMinecraftFolder();
+
     try {
       const res: string[] = await invoke("get_modpack_options", {
         minecraftfolder: mcFolder,
