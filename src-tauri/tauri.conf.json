@@ -60,7 +60,7 @@
       "csp": null
     },
     "updater": {
-      "active": false,
+      "active": true,
       "dialog": false,
       "endpoints": [
         "https://github.com/mrquantumoff/MinecraftModpackManager/raw/master/version.json"
