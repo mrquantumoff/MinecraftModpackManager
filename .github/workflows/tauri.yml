@@ -20,7 +20,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-
+      - name: Install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@7.11.0 --activate
       - name: Rust setup
         uses: actions-rs/toolchain@v1
         with:
