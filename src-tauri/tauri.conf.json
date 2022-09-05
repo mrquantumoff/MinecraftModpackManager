@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "mcmodpackmanager",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "tauri": {
     "allowlist": {
@@ -35,7 +35,6 @@
         "icons/32x32.png",
         "icons/128x128.png",
         "icons/128x128@2x.png",
-        "icons/icon.icns",
         "icons/icon.ico"
       ],
       "identifier": "com.ua.demiryerli.mcmodpackmanager",
@@ -65,7 +64,7 @@
       "endpoints": [
         "https://github.com/mrquantumoff/MinecraftModpackManager/raw/master/version.json"
       ],
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDU2RkY3NkEyMkI5NzE0OApSV1JJY2JraWF2ZHZCZCtMZGhoTHpqUjNXZW5jSkJFM0VDd2VFTVNUUFVVVll3dUhhcnNFc2RMRgo="
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDg4N0I4OUQ0NDRFQjJDMUIKUldRYkxPdEUxSWw3aUI4aTV3Y3lXSnpDL3ZJdjc4RUVIOVhPWHAwWXZmRlF5dlU4UW8vWXppWXAK"
     },
     "windows": [
       {
