@@ -5,6 +5,9 @@ import Heading from "./components/heading/heading";
 import Selector from "./components/selector/Selector";
 
 function App() {
+  // document.addEventListener("contextmenu", (event) => {
+  //   event.preventDefault();
+  // });
   return (
     <div className="container">
       <ThemeProvider theme={darkTheme}>

@@ -8,16 +8,15 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { platform } from "@tauri-apps/api/os";
 import { Alert, CircularProgress } from "@mui/material";
-import getCurrentModpack, {
-  setCurrentModpack,
-} from "../../tools/currentModpack";
+import { checkUpdate, installUpdate } from "@tauri-apps/api/updater";
+import { relaunch } from "@tauri-apps/api/process";
 
 export default function Selector() {
   const [options, setOptions] = useState(["No options"]);
   const [isAutoCompleteActive, setIsAutoCompleteActive] =
     useState<boolean>(true);
   const [progress, setProgress] = useState<any>(null);
-  const [defaultValue, setDefaultValue] = useState<any>(getCurrentModpack());
+
   // Set mods folder free
   const setModsFree = async () => {
     const mcFolder = await getMinecraftFolder();
@@ -27,12 +26,12 @@ export default function Selector() {
     try {
       await invoke("clear_modpack", { minecraftfolder: mcFolder });
       setIsAutoCompleteActive(true);
-      setProgress(null);
-      setCurrentModpack(null);
+      setProgress(
+        <Alert severity="success">Modpack cleared successfully</Alert>
+      );
     } catch (err) {
       console.error(err);
       if (os == "win32") {
-        setCurrentModpack(null);
         setProgress(
           <Alert severity="error">
             Failed to clear modpacks, try running the app as admin
@@ -46,13 +45,59 @@ export default function Selector() {
   };
 
   const applyModpack = async () => {
+    const os = await platform();
     try {
-      setCurrentModpack(autoCompleteValue);
-    } catch (e) {}
+      setIsAutoCompleteActive(false);
+      setProgress(<CircularProgress />);
+      const mcFolder = await getMinecraftFolder();
+      if (autoCompleteValue === null) {
+        setProgress(
+          <Alert severity="warning">
+            Please choose a modpack or set mods free by clearing the modpack
+          </Alert>
+        );
+      } else {
+        await invoke("set_modpack", {
+          minecraftfolder: mcFolder,
+          modpack: autoCompleteValue,
+        });
+      }
+      setIsAutoCompleteActive(true);
+      setProgress(<Alert severity="success">Modpack set successfully</Alert>);
+    } catch (err) {
+      console.error(err);
+      if (os == "win32") {
+        setProgress(
+          <Alert severity="error">
+            Failed to clear modpacks, try running the app as admin
+          </Alert>
+        );
+      } else {
+        setProgress(<Alert severity="error">Failed to clear modpacks</Alert>);
+      }
+      setIsAutoCompleteActive(true);
+    }
   };
 
   // Gets options from the backend
   const func = async () => {
+    try {
+      const { shouldUpdate } = await checkUpdate();
+      if (shouldUpdate) {
+        setProgress(
+          <>
+            <Alert severity="info">Updating modpack manager...</Alert>
+            <CircularProgress />
+          </>
+        );
+
+        await installUpdate();
+        // install complete, restart app
+        await relaunch();
+      }
+    } catch (error) {
+      console.log(error);
+    }
     const mcFolder = await getMinecraftFolder();
 
     try {
@@ -88,7 +133,6 @@ export default function Selector() {
           sx={{ width: 290 }}
           value={autoCompleteValue}
           readOnly={!isAutoCompleteActive}
-          defaultValue={defaultValue}
           onChange={(event: any, newValue: null | string) => {
             console.log("Autocomplete value: " + newValue);
             if (typeof newValue === "string") {
@@ -101,9 +145,9 @@ export default function Selector() {
       </div>
       <div className="buttons">
         <ButtonGroup variant="contained" disabled={!isAutoCompleteActive}>
-          <Button>Apply</Button>
-          <Button>New</Button>
+          <Button onClick={applyModpack}>Apply</Button>
           <Button onClick={setModsFree}>Clear</Button>
+          <Button onClick={func}>Reload</Button>
         </ButtonGroup>
       </div>
       <br></br>

@@ -12,7 +12,11 @@ use std::fs::create_dir_all;
 #[tokio::main]
 async fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![get_modpack_options, clear_modpack])
+        .invoke_handler(tauri::generate_handler![
+            get_modpack_options,
+            clear_modpack,
+            set_modpack
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -88,13 +92,13 @@ async fn clear_modpack(minecraftfolder: String) -> Result<(), String> {
         }
     }
 
-    // if PathBuf::from(&minecraftfolder).join("mods").exists() {
-    //     let res = std::fs::remove_dir_all(PathBuf::from(&minecraftfolder).join("mods"));
-    //     match res {
-    //         Ok(_) => {}
-    //         Err(_) => return Err("Failed removing mods".to_string()),
-    //     }
-    // }
+    if PathBuf::from(&minecraftfolder).join("mods").exists() {
+        let res = std::fs::remove_dir_all(PathBuf::from(&minecraftfolder).join("mods"));
+        match res {
+            Ok(_) => {}
+            Err(_) => return Err("Failed removing mods".to_string()),
+        }
+    }
 
     #[cfg(unix)]
     {
@@ -111,6 +115,57 @@ async fn clear_modpack(minecraftfolder: String) -> Result<(), String> {
     {
         let res = std::os::windows::fs::symlink_dir(
             &_mdpckpath.join("free"),
+            PathBuf::from(minecraftfolder).join("mods"),
+        );
+        match res {
+            Ok(_) => return Ok(()),
+            Err(e) => {
+                return Err(
+                    "Failed to create a symlink to free modpack folder: ".to_string()
+                        + &e.kind().to_string(),
+                )
+            }
+        }
+    }
+    return Err("Unknown os".to_string());
+}
+
+#[allow(unreachable_code)]
+#[tauri::command]
+async fn set_modpack(minecraftfolder: String, modpack: String) -> Result<(), String> {
+    println!(
+        "{} \n{}",
+        &minecraftfolder,
+        PathBuf::from(&minecraftfolder)
+            .join("mods")
+            .to_str()
+            .unwrap()
+    );
+    let _mdpckpath = PathBuf::from(&minecraftfolder).join("modpacks");
+
+    if PathBuf::from(&minecraftfolder).join("mods").exists() {
+        let res = std::fs::remove_dir_all(PathBuf::from(&minecraftfolder).join("mods"));
+        match res {
+            Ok(_) => {}
+            Err(_) => return Err("Failed removing mods".to_string()),
+        }
+    }
+
+    #[cfg(unix)]
+    {
+        let res = std::os::unix::fs::symlink(
+            &_mdpckpath.join(modpacks),
+            PathBuf::from(minecraftfolder).join("mods"),
+        );
+        match res {
+            Ok(_) => return Ok(()),
+            Err(e) => return Err("Failed to create a symlink to free modpack folder".to_string()),
+        }
+    }
+    #[cfg(windows)]
+    {
+        let res = std::os::windows::fs::symlink_dir(
+            &_mdpckpath.join(modpack),
             PathBuf::from(minecraftfolder).join("mods"),
         );
         match res {
