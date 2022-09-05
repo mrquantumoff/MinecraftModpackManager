@@ -154,7 +154,7 @@ async fn set_modpack(minecraftfolder: String, modpack: String) -> Result<(), Str
     #[cfg(unix)]
     {
         let res = std::os::unix::fs::symlink(
-            &_mdpckpath.join(modpacks),
+            &_mdpckpath.join(modpack),
             PathBuf::from(minecraftfolder).join("mods"),
         );
         match res {
