@@ -1,19 +1,19 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "notes": "Update",
   "pub_date": "2022-09-06T10:50:59Z",
   "platforms": {
     "darwin-x86_64": {
-      "signature": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.1.0/Minecraft.Modpack.Manager.app.tar.gz.sig",
-      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.1.0/Minecraft.Modpack.Manager.app.tar.gz"
+      "signature": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.2.0/Minecraft.Modpack.Manager.app.tar.gz.sig",
+      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.2.0/Minecraft.Modpack.Manager.app.tar.gz"
     },
     "linux-x86_64": {
-      "signature": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.1.0/minecraft-modpack-manager_1.1.0_amd64.AppImage.tar.gz.sig",
-      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.1.0/minecraft-modpack-manager_1.1.0_amd64.AppImage.tar.gz.sig"
+      "signature": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.2.0/minecraft-modpack-manager_1.2.0_amd64.AppImage.tar.gz.sig",
+      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.2.0/minecraft-modpack-manager_1.2.0_amd64.AppImage.tar.gz.sig"
     },
     "windows-x86_64": {
-      "signature": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.1.0/Minecraft.Modpack.Manager_1.1.0_x64_en-US.msi.zip.sig",
-      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.1.0/Minecraft.Modpack.Manager_1.1.0_x64_en-US.msi.zip"
+      "signature": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.2.0/Minecraft.Modpack.Manager_1.2.0_x64_en-US.msi.zip.sig",
+      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.2.0/Minecraft.Modpack.Manager_1.2.0_x64_en-US.msi.zip"
     }
   }
 }
