@@ -6,6 +6,8 @@
 
 use std::path::PathBuf;
 
+use std::fs;
+
 use std::fs::create_dir_all;
 
 /// Boilerplate code for tauri
@@ -16,7 +18,8 @@ async fn main() {
             get_modpack_options,
             clear_modpack,
             set_modpack,
-            open_modpacks_folder
+            open_modpacks_folder,
+            are_mods_symlinks
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -198,4 +201,16 @@ async fn open_modpacks_folder(minecraftfolder: String) {
         .arg(".")
         .output()
         .expect("Failed to open modpacks folder");
+}
+
+#[tauri::command]
+async fn are_mods_symlinks(minecraftfolder: String) -> Result<bool, String> {
+    let _mdpckpath = PathBuf::from(&minecraftfolder).join("mods");
+    let metadata = fs::metadata(&_mdpckpath);
+    match metadata {
+        Ok(_metadata) => {
+            return Ok(!_mdpckpath.is_symlink());
+        }
+        Err(_) => return Err("Failed to get metadata".to_string()),
+    }
 }

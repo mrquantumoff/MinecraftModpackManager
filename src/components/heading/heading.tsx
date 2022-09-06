@@ -6,7 +6,7 @@ export default function Heading() {
   return (
     <>
       <div className="heading">
-        <Typography variant="h3">{"Minecraft Modpack Manager"}</Typography>
+        <Typography variant="h3">Minecraft Modpack Manager</Typography>
       </div>
     </>
   );

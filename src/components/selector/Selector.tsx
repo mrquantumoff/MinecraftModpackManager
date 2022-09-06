@@ -9,14 +9,30 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import { platform } from "@tauri-apps/api/os";
 import { Alert, CircularProgress } from "@mui/material";
 import { checkUpdate, installUpdate } from "@tauri-apps/api/updater";
-import { relaunch } from "@tauri-apps/api/process";
+import { relaunch, exit } from "@tauri-apps/api/process";
+import { confirm } from "@tauri-apps/api/dialog";
 
 export default function Selector() {
   const [options, setOptions] = useState(["No options"]);
   const [isAutoCompleteActive, setIsAutoCompleteActive] =
     useState<boolean>(true);
   const [progress, setProgress] = useState<any>(null);
-  const [openModpackFolder, setOpenModpackFolder] = useState<any>(null);
+
+  const openModpack = async () => {
+    const mcFolder = await getMinecraftFolder();
+    await invoke("open_modpacks_folder", { minecraftfolder: mcFolder });
+  };
+
+  const [openModpackFolder, setOpenModpackFolder] = useState<any>(
+    <>
+      <Button
+        variant="contained"
+        disabled={!isAutoCompleteActive}
+        onClick={openModpack}>
+        Open modpacks folder
+      </Button>
+    </>
+  );
 
   // Set mods folder free
   const setModsFree = async () => {
@@ -102,7 +118,25 @@ export default function Selector() {
       setProgress(<Alert severity="error">{error}</Alert>);
       console.log(error);
     }
+
     const mcFolder = await getMinecraftFolder();
+
+    try {
+      const areModsSymlinks: boolean = await invoke("are_mods_symlinks", {
+        minecraftfolder: mcFolder,
+      });
+      if (areModsSymlinks) {
+        const confirmed = await confirm(
+          "Warning: it seems that your mods aren't symlinked to the modpacks directory, this means any action (clear/apply) will result deleting your currently installed mods",
+          "Data loss warning"
+        );
+        if (!confirmed) {
+          exit(1);
+        }
+      }
+    } catch (error: any) {
+      console.error(error);
+    }
 
     try {
       const res: string[] = await invoke("get_modpack_options", {
@@ -110,18 +144,8 @@ export default function Selector() {
       });
       setOptions(res);
       const os = await platform();
-      if (os === "win32") {
-        const openModpack = async () => {
-          await invoke("open_modpacks_folder", { minecraftfolder: mcFolder });
-        };
-
-        setOpenModpackFolder(
-          <>
-            <Button variant="contained" onClick={openModpack}>
-              Open modpacks folder
-            </Button>
-          </>
-        );
+      if (os !== "win32") {
+        setOpenModpackFolder(null);
       }
     } catch (err) {
       console.error(err);
