@@ -15,7 +15,8 @@ async fn main() {
         .invoke_handler(tauri::generate_handler![
             get_modpack_options,
             clear_modpack,
-            set_modpack
+            set_modpack,
+            open_modpacks_folder
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -179,4 +180,22 @@ async fn set_modpack(minecraftfolder: String, modpack: String) -> Result<(), Str
         }
     }
     return Err("Unknown os".to_string());
+}
+
+#[tauri::command]
+async fn open_modpacks_folder(minecraftfolder: String) {
+    let _mdpckpath = PathBuf::from(&minecraftfolder).join("modpacks");
+    if !_mdpckpath.exists() {
+        // Create a new folder
+        let res = create_dir_all(&_mdpckpath);
+        match res {
+            Ok(_) => {}
+            Err(_) => {}
+        }
+    }
+    std::env::set_current_dir(_mdpckpath).expect("error switching to another folder");
+    std::process::Command::new("explorer.exe")
+        .arg(".")
+        .output()
+        .expect("Failed to open modpacks folder");
 }

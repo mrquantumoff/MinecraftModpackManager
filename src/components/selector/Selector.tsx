@@ -16,6 +16,7 @@ export default function Selector() {
   const [isAutoCompleteActive, setIsAutoCompleteActive] =
     useState<boolean>(true);
   const [progress, setProgress] = useState<any>(null);
+  const [openModpackFolder, setOpenModpackFolder] = useState<any>(null);
 
   // Set mods folder free
   const setModsFree = async () => {
@@ -97,7 +98,8 @@ export default function Selector() {
         // install complete, restart app
         await relaunch();
       }
-    } catch (error) {
+    } catch (error: any) {
+      setProgress(<Alert severity="error">{error}</Alert>);
       console.log(error);
     }
     const mcFolder = await getMinecraftFolder();
@@ -107,6 +109,20 @@ export default function Selector() {
         minecraftfolder: mcFolder,
       });
       setOptions(res);
+      const os = await platform();
+      if (os === "win32") {
+        const openModpack = async () => {
+          await invoke("open_modpacks_folder", { minecraftfolder: mcFolder });
+        };
+
+        setOpenModpackFolder(
+          <>
+            <Button variant="contained" onClick={openModpack}>
+              Open modpacks folder
+            </Button>
+          </>
+        );
+      }
     } catch (err) {
       console.error(err);
       setOptions(["Failed to get modpack options (" + err + ")"]);
@@ -154,6 +170,8 @@ export default function Selector() {
       </div>
       <br></br>
       {progress}
+      <br></br>
+      {openModpackFolder}
     </>
   );
 }
