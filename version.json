@@ -4,12 +4,15 @@
   "pub_date": "2022-09-05T21:19:33Z",
   "platforms": {
     "darwin-x86_64": {
+      "signature": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.0.1/mcmodpackmanager.app.tar.gz.sig",
       "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.0.1/mcmodpackmanager.app.tar.gz"
     },
     "linux-x86_64": {
+      "signature": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.0.1/mcmodpackmanager_1.0.1_amd64.AppImage.tar.gz.sig",
       "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.0.1/mcmodpackmanager_1.0.1_amd64.AppImage.tar.gz"
     },
     "windows-x86_64": {
+      "signature": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.0.1/mcmodpackmanager_1.0.1_x64_en-US.msi.zip.sig",
       "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v1.0.1/mcmodpackmanager_1.0.1_x64_en-US.msi.zip"
     }
   }

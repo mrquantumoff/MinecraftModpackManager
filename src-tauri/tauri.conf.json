@@ -63,7 +63,8 @@
       "dialog": false,
       "endpoints": [
         "https://github.com/mrquantumoff/MinecraftModpackManager/raw/master/version.json"
-      ]
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDg4N0I4OUQ0NDRFQjJDMUIKUldRYkxPdEUxSWw3aUI4aTV3Y3lXSnpDL3ZJdjc4RUVIOVhPWHAwWXZmRlF5dlU4UW8vWXppWXAK"
     },
     "windows": [
       {
