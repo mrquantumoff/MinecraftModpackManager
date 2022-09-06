@@ -84,6 +84,7 @@ export default function Selector() {
     try {
       const { shouldUpdate } = await checkUpdate();
       if (shouldUpdate) {
+        setIsAutoCompleteActive(false);
         setProgress(
           <>
             <Alert severity="info">Updating modpack manager...</Alert>
