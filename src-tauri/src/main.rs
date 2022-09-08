@@ -222,12 +222,12 @@ mod tests {
         #[cfg(target_os = "linux")]
         {
             let mcdir = "~/.minecraft".to_string();
-            return crate::clear_modpack(mcdir)?;
+            return futures::executor::block_on(crate::clear_modpack(mcdir));
         }
         #[cfg(target_os = "macos")]
         {
             let mcdir = String::from("~/Library/Application Support/minecraft");
-            return crate::clear_modpack(mcdir.to_str().unwrap().to_string());
+            return futures::executor::block_on(crate::clear_modpack(mcdir));
         }
         Ok(())
     }

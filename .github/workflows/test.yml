@@ -33,4 +33,5 @@ jobs:
       - name: Install app dependencies and build web
         run: pnpm install && pnpm build
       - name: Test
+        if: matrix.platform != 'windows-latest'
         run: cd src-tauri && cargo test
