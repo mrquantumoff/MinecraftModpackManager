@@ -1,7 +1,8 @@
 // extern crate winres;
+#[cfg(target_os = "windows")]
 use winres::WindowsResource;
 fn main() {
-    #[cfg(windows)]
+    #[cfg(target_os = "windows")]
     {
         let mut res = WindowsResource::new();
         res.set_manifest(
