@@ -33,4 +33,4 @@ jobs:
       - name: Install app dependencies and build web
         run: pnpm install && pnpm build
       - name: Test
-        run: cargo test
+        run: cd src-tauri && cargo test
