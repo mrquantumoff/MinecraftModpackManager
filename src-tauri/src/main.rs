@@ -214,3 +214,21 @@ async fn are_mods_symlinks(minecraftfolder: String) -> Result<bool, String> {
         Err(_) => return Err("Failed to get metadata".to_string()),
     }
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn test() -> Result<(), String> {
+        #[cfg(target_os = "linux")]
+        {
+            let mcdir = "~/.minecraft".to_string();
+            return crate::clear_modpack(mcdir)?;
+        }
+        #[cfg(target_os = "macos")]
+        {
+            let mcdir = String::from("~/Library/Application Support/minecraft");
+            return crate::clear_modpack(mcdir.to_str().unwrap().to_string());
+        }
+        Ok(())
+    }
+}
