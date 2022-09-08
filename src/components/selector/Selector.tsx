@@ -187,7 +187,9 @@ export default function Selector() {
       </div>
       <div className="buttons">
         <ButtonGroup variant="contained" disabled={!isAutoCompleteActive}>
-          <Button onClick={applyModpack}>Apply</Button>
+          <Button disabled={autoCompleteValue === null} onClick={applyModpack}>
+            Apply
+          </Button>
           <Button onClick={setModsFree}>Clear</Button>
           <Button onClick={func}>Reload</Button>
         </ButtonGroup>
