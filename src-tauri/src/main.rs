@@ -8,6 +8,8 @@ use std::path::PathBuf;
 
 use std::fs;
 
+use tauri::Manager;
+
 use std::fs::create_dir_all;
 
 /// Boilerplate code for tauri
@@ -19,7 +21,8 @@ async fn main() {
             clear_modpack,
             set_modpack,
             open_modpacks_folder,
-            are_mods_symlinks
+            are_mods_symlinks,
+            close_splashscreen
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -231,4 +234,14 @@ mod tests {
         }
         Ok(())
     }
+}
+
+#[tauri::command]
+async fn close_splashscreen(window: tauri::Window) {
+    // Close splashscreen
+    if let Some(splashscreen) = window.get_window("splashscreen") {
+        splashscreen.close().unwrap();
+    }
+    // Show main window
+    window.get_window("main").unwrap().show().unwrap();
 }

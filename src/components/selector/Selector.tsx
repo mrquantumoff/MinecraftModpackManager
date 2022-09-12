@@ -147,6 +147,7 @@ export default function Selector() {
       if (os !== "win32") {
         setOpenModpackFolder(null);
       }
+      await invoke("close_splashscreen");
     } catch (err) {
       console.error(err);
       setOptions(["Failed to get modpack options (" + err + ")"]);

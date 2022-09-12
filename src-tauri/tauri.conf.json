@@ -72,6 +72,14 @@
         "maxWidth": 960,
         "center": true,
         "fileDropEnabled": false
+      },
+      {
+        "width": 520,
+        "height": 520,
+        "decorations": false,
+        "url": "splashscreen.html",
+        "label": "splashscreen",
+        "center": true
       }
     ]
   }
