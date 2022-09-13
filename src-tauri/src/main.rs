@@ -10,6 +10,10 @@ use std::fs;
 
 use tauri::Manager;
 
+use std::fs::File;
+
+use std::io::Write;
+
 use std::fs::create_dir_all;
 
 /// Boilerplate code for tauri
@@ -22,7 +26,8 @@ async fn main() {
             set_modpack,
             open_modpacks_folder,
             are_mods_symlinks,
-            close_splashscreen
+            close_splashscreen,
+            install_mc_mods
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -244,4 +249,104 @@ async fn close_splashscreen(window: tauri::Window) {
     }
     // Show main window
     window.get_window("main").unwrap().show().unwrap();
+}
+
+#[tauri::command]
+async fn install_mc_mods(
+    download_url: &str,
+    minecraftfolder: &str,
+    tempdir: &str,
+    mdpckname: &str,
+    forceinstall: bool,
+) -> Result<(), String> {
+    let moda = PathBuf::from(tempdir).join("modpack.zip");
+    let file = File::create(&moda);
+    let mdpckdir: PathBuf = PathBuf::from(minecraftfolder)
+        .join("modpacks")
+        .join(mdpckname);
+
+    if mdpckdir.exists() {
+        if !forceinstall {
+            return Err("Modpack exists".to_string());
+        } else {
+            let res = fs::remove_dir_all(&mdpckdir);
+            match res {
+                Ok(_) => {}
+                Err(_) => return Err("Failed to overwrite modpack".to_string()),
+            }
+        }
+    }
+    match file {
+        Ok(mut f) => {
+            let request = reqwest::get(download_url).await;
+            match request {
+                Ok(mut request) => {
+                    while let Some(chunk) =
+                        request.chunk().await.expect("Error while loading chunks")
+                    {
+                        let res = f.write_all(&chunk);
+                        match res {
+                            Ok(_) => {}
+                            Err(_) => return Err("Error writing file chunk".to_string()),
+                        }
+                    }
+                }
+                Err(_) => {
+                    println!("Failed to create the request");
+
+                    return Err("Failed to create the request".to_string());
+                }
+            }
+        }
+        Err(_) => {
+            println!("Failed to create the zip file");
+
+            return Err("Failed to create the zip file".to_string());
+        }
+    }
+
+    let dirres = create_dir_all(&mdpckdir);
+
+    match dirres {
+        Ok(_) => {}
+        Err(_) => return Err("Directory creation error".to_string()),
+    }
+
+    let file = File::open(&moda);
+    match file {
+        Ok(fileok) => {
+            let archive = zip::ZipArchive::new(&fileok);
+            match archive {
+                Ok(mut archive) => {
+                    let finalres = archive.extract(&mdpckdir);
+                    match finalres {
+                        Ok(_) => {
+                            let cleanupres = fs::remove_file(&moda);
+                            match cleanupres {
+                                Ok(()) => {}
+                                Err(_) => return Err(
+                                    "Failed to clean up (but modpack is installed successfully)"
+                                        .to_string(),
+                                ),
+                            }
+                        }
+                        Err(_) => {
+                            println!("");
+                            return Err("Failed to extract zip archive".to_string());
+                        }
+                    }
+                }
+                Err(_) => {
+                    println!("UnZipError (322)");
+                    return Err("Failed to extract zip archive (322)".to_string());
+                }
+            }
+        }
+        Err(_) => {
+            println!("ArchiveError(328)");
+            return Err("Failed to extract zip archive (328)".to_string());
+        }
+    }
+
+    Ok(())
 }

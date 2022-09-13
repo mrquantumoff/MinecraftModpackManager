@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "Minecraft Modpack Manager",
-    "version": "1.4.0"
+    "version": "2.0.0"
   },
   "tauri": {
     "allowlist": {
@@ -21,6 +21,14 @@
       },
       "os": {
         "all": true
+      },
+      "dialog": {
+        "all": true
+      },
+      "http": {
+        "all": true,
+        "request": true,
+        "scope": ["http://*", "https://*"]
       }
     },
     "bundle": {
@@ -74,11 +82,11 @@
     "windows": [
       {
         "fullscreen": false,
-        "minHeight": 600,
+        "minHeight": 700,
         "resizable": true,
         "title": "Minecraft Modpack Manager",
         "minWidth": 800,
-        "maxHeight": 740,
+        "maxHeight": 780,
         "maxWidth": 960,
         "center": true,
         "fileDropEnabled": false

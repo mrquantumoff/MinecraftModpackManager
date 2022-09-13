@@ -1,6 +1,6 @@
 [package]
 name = "mcmodpackmanager"
-version = "1.4.0"
+version = "2.0.0"
 description = "My Minecraft modpack manager"
 authors = ["Demir Yerli <mrquantumoff@protonmail.com>"]
 license = "BSD-2-Clause"
@@ -19,6 +19,9 @@ serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.0", features = ["api-all", "config-json5", "reqwest-client", "updater", "windows7-compat"] }
 tokio = { version = "1", features = ["full"] }
+reqwest = "0.11"
+zip ="0.6"
+zip-extensions = "0.6"
 tauri-plugin-single-instance = {git = "https://github.com/tauri-apps/tauri-plugin-single-instance.git"}
 [dev-dependencies]
 futures = "0.3"

@@ -2,18 +2,20 @@ import { ThemeProvider } from "@mui/material";
 import createTheme from "@mui/material/styles/createTheme";
 import React from "react";
 import Heading from "./components/heading/heading";
+import Installer from "./components/modpackinstaller/installer";
 import Selector from "./components/selector/Selector";
 
 function App() {
   // Disable right click to fix some bugs
-  document.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
-  });
+  // document.addEventListener("contextmenu", (event) => {
+  //   event.preventDefault();
+  // });
   return (
     <div className="container">
       <ThemeProvider theme={darkTheme}>
         <Heading></Heading>
         <Selector></Selector>
+        <Installer></Installer>
       </ThemeProvider>
     </div>
   );
