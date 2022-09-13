@@ -1,5 +1,7 @@
 # Minecraft modpack manager
 
+![](Screenshot.img)
+
 ## Installation 
 * Download the latest binary from the [releases tab](https://github.com/mrquantumoff/MinecraftModpackManager/releases/latest)
 * Open it
