@@ -1,6 +1,6 @@
 # Minecraft modpack manager
 
-![](Screenshot.img)
+![](https://github.com/mrquantumoff/MinecraftModpackManager/raw/master/Screenshot.png)
 
 ## Installation 
 * Download the latest binary from the [releases tab](https://github.com/mrquantumoff/MinecraftModpackManager/releases/latest)
