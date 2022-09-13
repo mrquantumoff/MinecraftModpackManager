@@ -32,7 +32,10 @@
       },
       "externalBin": [],
       "icon": ["icons/logo.png", "icons/logo.ico"],
-      "identifier": "com.ua.demiryerli.mcmodpackmanager",
+      "identifier": "com.mrquantumoff.mcmodpackmanager",
+      "appimage": {
+        "bundleMediaFramework": false
+      },
       "longDescription": "",
       "macOS": {
         "entitlements": null,
