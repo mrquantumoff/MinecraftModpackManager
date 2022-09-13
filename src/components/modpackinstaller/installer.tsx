@@ -14,12 +14,13 @@ interface RefScheme {
 }
 
 export default function Installer() {
-  const [downloadProgress, setDownloadProgress] = useState(0);
+  const [isButtonEnabled, setIsButtonEnabled] = useState(true);
 
   const [downloadProgressElement, setDownloadProgressElement] =
     useState<any>(null);
 
   const install = async () => {
+    setIsButtonEnabled(false);
     const selected = await open({
       multiple: false,
       directory: false,
@@ -97,12 +98,16 @@ export default function Installer() {
         }
       }
     }
+    setIsButtonEnabled(true);
   };
 
   return (
     <>
       <div className="installer">
-        <Button variant="outlined" onClick={install}>
+        <Button
+          variant="outlined"
+          onClick={install}
+          disabled={!isButtonEnabled}>
           Install a modpack from a reference file
         </Button>
         <br></br>

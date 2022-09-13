@@ -97,6 +97,10 @@
         "decorations": false,
         "url": "splashscreen.html",
         "label": "splashscreen",
+        "title": "Minecraft Modpack Manager",
+        "alwaysOnTop": true,
+        "focus": true,
+        "fileDropEnabled": false,
         "center": true
       }
     ]
