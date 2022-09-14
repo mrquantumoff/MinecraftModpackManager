@@ -186,7 +186,7 @@ async fn set_modpack(minecraftfolder: String, modpack: String) -> Result<(), Str
             Err(_e) => {
                 return Err(
                     "Failed to create a symlink to free modpack folder: ".to_string()
-                        + &e.kind().to_string(),
+                        + &_e.kind().to_string(),
                 )
             }
         }
