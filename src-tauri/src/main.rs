@@ -48,7 +48,7 @@ async fn get_modpack_options(minecraftfolder: String) -> Result<Vec<String>, Str
             Err(_) => return Err("Failed to create modpack folder".to_string()),
         }
     }
-    let readres = _mdpckpath.clone().read_dir();
+    let readres = _mdpckpath.read_dir();
     let mut out: Vec<String> = Vec::new();
     match readres {
         Ok(res) => {
@@ -59,7 +59,8 @@ async fn get_modpack_options(minecraftfolder: String) -> Result<Vec<String>, Str
                             #[cfg(unix)]
                             {
                                 let path = entry.path().to_str().unwrap().to_string();
-                                let split: Vec<&str> = path.split("/").collect();
+                                let split: Vec<&str> = path.split('/').collect();
+                                #[allow(clippy::cmp_owned)]
                                 if split[split.len() - 1].to_string() != "free" {
                                     out.push(split[split.len() - 1].to_string());
                                 }
@@ -80,7 +81,7 @@ async fn get_modpack_options(minecraftfolder: String) -> Result<Vec<String>, Str
         }
         Err(_) => return Err("Failed to read modpack folder".to_string()),
     }
-    return Ok(out);
+    Ok(out)
 }
 
 #[allow(unreachable_code)]
@@ -120,7 +121,7 @@ async fn clear_modpack(minecraftfolder: String) -> Result<(), String> {
         );
         match res {
             Ok(_) => return Ok(()),
-            Err(e) => return Err("Failed to create a symlink to free modpack folder".to_string()),
+            Err(_e) => return Err("Failed to create a symlink to free modpack folder".to_string()),
         }
     }
     #[cfg(windows)]
@@ -139,7 +140,7 @@ async fn clear_modpack(minecraftfolder: String) -> Result<(), String> {
             }
         }
     }
-    return Err("Unknown os".to_string());
+    Err("Unknown os".to_string())
 }
 
 #[allow(unreachable_code)]
@@ -171,7 +172,7 @@ async fn set_modpack(minecraftfolder: String, modpack: String) -> Result<(), Str
         );
         match res {
             Ok(_) => return Ok(()),
-            Err(e) => return Err("Failed to create a symlink to free modpack folder".to_string()),
+            Err(_e) => return Err("Failed to create a symlink to free modpack folder".to_string()),
         }
     }
     #[cfg(windows)]
@@ -182,7 +183,7 @@ async fn set_modpack(minecraftfolder: String, modpack: String) -> Result<(), Str
         );
         match res {
             Ok(_) => return Ok(()),
-            Err(e) => {
+            Err(_e) => {
                 return Err(
                     "Failed to create a symlink to free modpack folder: ".to_string()
                         + &e.kind().to_string(),
@@ -190,7 +191,7 @@ async fn set_modpack(minecraftfolder: String, modpack: String) -> Result<(), Str
             }
         }
     }
-    return Err("Unknown os".to_string());
+    Err("Unknown os".to_string())
 }
 
 #[tauri::command]
@@ -199,16 +200,23 @@ async fn open_modpacks_folder(minecraftfolder: String) {
     if !_mdpckpath.exists() {
         // Create a new folder
         let res = create_dir_all(&_mdpckpath);
-        match res {
-            Ok(_) => {}
-            Err(_) => {}
-        }
+        if res.is_ok() {}
     }
     std::env::set_current_dir(_mdpckpath).expect("error switching to another folder");
-    std::process::Command::new("explorer.exe")
-        .arg(".")
-        .output()
-        .expect("Failed to open modpacks folder");
+    #[cfg(target_os = "windows")]
+    {
+        std::process::Command::new("explorer.exe")
+            .arg(".")
+            .output()
+            .expect("Failed to open modpacks folder");
+    }
+    #[cfg(target_os = "linux")]
+    {
+        std::process::Command::new("xdg-open")
+            .arg(".")
+            .output()
+            .expect("Failed to open modpacks folder");
+    }
 }
 
 #[tauri::command]
@@ -216,10 +224,9 @@ async fn are_mods_symlinks(minecraftfolder: String) -> Result<bool, String> {
     let _mdpckpath = PathBuf::from(&minecraftfolder).join("mods");
     let metadata = fs::metadata(&_mdpckpath);
     match metadata {
-        Ok(_metadata) => {
-            return Ok(!_mdpckpath.is_symlink());
-        }
-        Err(_) => return Err("Failed to get metadata".to_string()),
+        Ok(_metadata) => Ok(!_mdpckpath.is_symlink()),
+
+        Err(_) => Err("Failed to get metadata".to_string()),
     }
 }
 
@@ -237,6 +244,7 @@ mod tests {
             let mcdir = String::from("~/Library/Application Support/minecraft");
             return futures::executor::block_on(crate::clear_modpack(mcdir));
         }
+        #[allow(unreachable_code)]
         Ok(())
     }
 }
@@ -331,7 +339,6 @@ async fn install_mc_mods(
                             }
                         }
                         Err(_) => {
-                            println!("");
                             return Err("Failed to extract zip archive".to_string());
                         }
                     }

@@ -48,7 +48,7 @@ export default function Selector() {
       );
     } catch (err) {
       console.error(err);
-      if (os == "win32") {
+      if (os === "win32") {
         setProgress(
           <Alert severity="error">
             Failed to clear modpacks, try running the app as admin
@@ -144,7 +144,7 @@ export default function Selector() {
       });
       setOptions(res);
       const os = await platform();
-      if (os !== "win32") {
+      if (os === "darwin") {
         setOpenModpackFolder(null);
       }
       await invoke("close_splashscreen");
