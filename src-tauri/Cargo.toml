@@ -22,7 +22,6 @@ tokio = { version = "1", features = ["full"] }
 reqwest = "0.11"
 zip ="0.6"
 zip-extensions = "0.6"
-tauri-plugin-single-instance = {git = "https://github.com/tauri-apps/tauri-plugin-single-instance.git"}
 [dev-dependencies]
 futures = "0.3"
 
