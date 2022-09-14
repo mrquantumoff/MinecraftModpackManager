@@ -20,6 +20,9 @@ use std::fs::create_dir_all;
 #[tokio::main]
 async fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
+            println!("{}, {argv:?}, {cwd}", app.package_info().name);
+        }))
         .invoke_handler(tauri::generate_handler![
             get_modpack_options,
             clear_modpack,
