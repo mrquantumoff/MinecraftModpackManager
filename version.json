@@ -1,19 +1,19 @@
 {
-  "version": "2.2.0",
+  "version": "2.3.0",
   "notes": "Update",
   "pub_date": "2022-09-06T10:50:59Z",
   "platforms": {
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTE5hd0xnS1N0MWhKRXZBQ0Y5czFkQ0srQzFwYWphM3J2dVcrOGc4YnJHV0syR2UvMFVFcWljZFRwSnp3am00bDZzbWdLcDllUkRyNzJ2ZWJiTDF5V2dZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjYzMTQ3NDI0CWZpbGU6TWluZWNyYWZ0IE1vZHBhY2sgTWFuYWdlci5hcHAudGFyLmd6CnB2cmMzUlBHZ0V6bHgvTjYxUVpISlQ4MHMvMmhpQUw1TjdlbWEyK0JyS0pBTlBWK25nTERUL0NzWXRIZDFwb1pMZ1FyV3I4TzJ3Wkw2MWR5V2FaYUJRPT0K",
-      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.2.0/Minecraft.Modpack.Manager.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTFBXVVZ4UUxCeUNmSzZIdXJ0NGhxaGJhS0Uwb1RDY2NYcmZMdWdwOHNJYkgyZG5CTHVGTmc1djF1dWIveS81Qm0xcy9EVmxoM2VhRkN5eVBtNTk4L0FRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjYzMzEzMzUzCWZpbGU6TWluZWNyYWZ0IE1vZHBhY2sgTWFuYWdlci5hcHAudGFyLmd6Cm03MllWKzJsUWpMK1lSMWZaV05kZEw0UGhGQ2YvK2xIaHUxMlJSL0FsdVBKOStmNnlJWnRKS0tLSHd6Q0oxUmZEWFZiN0JUK0xLYnBIOFE3U2NwK0F3PT0K",
+      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.3.0/Minecraft.Modpack.Manager.app.tar.gz"
     },
     "linux-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTEVLL1lBeWxUc2R1QlQ1anRTV21PNm1scU9BWTh6cnpmUWZCc3E4UjBsU29ETkl4ZWo5RUpiZmNhOCtpdTFXZ2RqaEhmYk00aGlnTGlzdUxFWG82cndrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjYzMTQ3NDMzCWZpbGU6bWluZWNyYWZ0LW1vZHBhY2stbWFuYWdlcl8yLjIuMF9hbWQ2NC5BcHBJbWFnZS50YXIuZ3oKeHNOdFYwK1NPd3EyVkFIeXBLMlV6UUY0TFNqUlArVmdicVdnSVd5MG1IU2k3QnpnanRIUEdNT0NlTlBNUjFrZ3pmRnBqMDVDT1pGVEkweGJjdGJRRGc9PQo=",
-      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.2.0/minecraft-modpack-manager_2.2.0_amd64.AppImage.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTE1Dd1lvZ1ZmbW5CcTRLSFNtYmNFMVI3Q0NSMW5oZEFHd0hVN3pnTytiSzhrcy9wYkZVZ29wYUx3cjBsK200RXhNZE04ZktkVTJsK1BpT0pEbW02ZkFnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjYzMzEzMDk1CWZpbGU6bWluZWNyYWZ0LW1vZHBhY2stbWFuYWdlcl8yLjMuMF9hbWQ2NC5BcHBJbWFnZS50YXIuZ3oKOHJuRkk0NkZ0RDU4U2lXanVZMXJHUW5ja21FWjVXcFZ4bEc5ZjhHQzNiS2NjdnFpdDJKRUw0NVM3bEFKWm84ZjRIM2x6WFk0cTZOdS9SQkpFbjVxQkE9PQo=",
+      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.3.0/minecraft-modpack-manager_2.3.0_amd64.AppImage.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTEhsNE1YcGRpNFlGSmlQS1BlR3RLZlpVc1RHTEhYVFBzV3lydXhOdDM4akRSRUJLNjF5cFZkYkVIUW0zM1VhMEhqVFNEN05XdG9NenFxSnlEOWhwekEwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjYzMTQ3NDA4CWZpbGU6TWluZWNyYWZ0IE1vZHBhY2sgTWFuYWdlcl8yLjIuMF94NjRfZW4tVVMubXNpLnppcApIK1pFeXQreFkrMlZLUDNHd0oxRmJsU3d2bmdBN3dSWHJOb08xL1ROcFEvZVc4NXJOOVhOaXhSR2c5MmJTRWg5RjZ6dkRPTG5LRlVQWHlzdjB4ZFJBQT09Cg==",
-      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.2.0/Minecraft.Modpack.Manager_2.2.0_x64_en-US.msi.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTEZoSEVMbk1uL3E2akVrOUZ0L054d2djNnNVcjRqNDZkTVRhd3l2VVNkSDNUaTREeFVHeW5memdJZ250Y3dGRXJnNmoxYXdwV1BSbVNvTVNxUFE5U3dnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjYzMzEzNDU5CWZpbGU6TWluZWNyYWZ0IE1vZHBhY2sgTWFuYWdlcl8yLjMuMF94NjRfZW4tVVMubXNpLnppcApDclQ2QVRUT290WTZiNWlEbVprRUQ3aWlhaC9oZWcrVFhOZUZudldUM2pCdDIyTmR6NXpidmRua1UzMytIN0QzcEhzb25JYTZIci9BQTlSUjdLTmdBQT09Cg==",
+      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.3.0/Minecraft.Modpack.Manager_2.3.0_x64_en-US.msi.zip"
     }
   }
 }
