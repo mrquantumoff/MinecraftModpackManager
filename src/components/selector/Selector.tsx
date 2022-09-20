@@ -99,6 +99,11 @@ export default function Selector() {
   // Gets options from the backend
   const func = async () => {
     try {
+      const os = await platform();
+      if (os === "darwin") {
+        setOpenModpackFolder(null);
+      }
+      await invoke("close_splashscreen");
       const { shouldUpdate } = await checkUpdate();
       if (shouldUpdate) {
         setIsAutoCompleteActive(false);
@@ -143,11 +148,6 @@ export default function Selector() {
         minecraftfolder: mcFolder,
       });
       setOptions(res);
-      const os = await platform();
-      if (os === "darwin") {
-        setOpenModpackFolder(null);
-      }
-      await invoke("close_splashscreen");
     } catch (err) {
       console.error(err);
       setOptions(["Failed to get modpack options (" + err + ")"]);
