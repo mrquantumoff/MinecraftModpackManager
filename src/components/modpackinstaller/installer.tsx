@@ -1,4 +1,4 @@
-import { Alert, Button, CircularProgress } from "@mui/material";
+import { Alert, Button, LinearProgress } from "@mui/material";
 import React, { useState } from "react";
 import "./installer.css";
 import { open } from "@tauri-apps/api/dialog";
@@ -13,8 +13,14 @@ interface RefScheme {
   name: string;
 }
 
-export default function Installer() {
-  const [isButtonEnabled, setIsButtonEnabled] = useState(true);
+export interface IInstallerProps {
+  isButtonEnabled: boolean;
+  setIsButtonEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Installer(props: IInstallerProps) {
+  const isButtonEnabled = props.isButtonEnabled;
+  const setIsButtonEnabled = props.setIsButtonEnabled;
 
   const [downloadProgressElement, setDownloadProgressElement] =
     useState<any>(null);
@@ -34,7 +40,7 @@ export default function Installer() {
     if (selected === null || Array.isArray(selected)) {
       setDownloadProgressElement(
         <>
-          <Alert className="filealert" severity="error">
+          <Alert className="alert" severity="error">
             No proper file was selected.
           </Alert>
         </>
@@ -42,7 +48,8 @@ export default function Installer() {
     } else {
       const conts = await readTextFile(selected);
       const reference: RefScheme = await JSON.parse(conts);
-      setDownloadProgressElement(<CircularProgress />);
+      setDownloadProgressElement(<LinearProgress />);
+
       const tempdirPath = await tempdir();
       const mcFolder = await getMinecraftFolder();
       try {
@@ -54,7 +61,7 @@ export default function Installer() {
           forceinstall: false,
         });
         setDownloadProgressElement(
-          <Alert severity="success">
+          <Alert className="alert" severity="success">
             Modpack has been installed successfully
           </Alert>
         );
@@ -73,27 +80,29 @@ export default function Installer() {
                 forceinstall: true,
               });
               setDownloadProgressElement(
-                <Alert severity="success">
+                <Alert className="alert" severity="success">
                   Modpack has been installed successfully
                 </Alert>
               );
             } catch (err: any) {
               setDownloadProgressElement(
-                <Alert severity="error">
+                <Alert className="alert" severity="error">
                   Error while installing modpack ({err})
                 </Alert>
               );
             }
           } else {
             setDownloadProgressElement(
-              <Alert severity="error">
+              <Alert className="alert" severity="error">
                 Error while installing modpack ({e})
               </Alert>
             );
           }
         } else {
           setDownloadProgressElement(
-            <Alert severity="error">Error while installing modpack ({e})</Alert>
+            <Alert className="alert" severity="error">
+              Error while installing modpack ({e})
+            </Alert>
           );
         }
       }
@@ -103,16 +112,15 @@ export default function Installer() {
 
   return (
     <>
-      <div className="installer">
-        <Button
-          variant="outlined"
-          onClick={install}
-          disabled={!isButtonEnabled}>
-          Install a modpack from a reference file
-        </Button>
-        <br></br>
-        <div className="Progress">{downloadProgressElement}</div>
-      </div>
+      <div></div>
+      <Button
+        className="installer"
+        variant="outlined"
+        onClick={install}
+        disabled={!isButtonEnabled}>
+        Install a modpack from a reference file
+      </Button>
+      <div className="installer progress">{downloadProgressElement}</div>
     </>
   );
 }

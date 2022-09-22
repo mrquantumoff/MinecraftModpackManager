@@ -1,9 +1,5 @@
 .installer {
-  margin-top: 2%;
   justify-content: center;
   align-items: center;
-}
-
-.progress {
-  margin-top: 5%;
+  min-width: 38vw;
 }

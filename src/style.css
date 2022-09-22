@@ -5,6 +5,19 @@
   justify-content: center;
 }
 
+.progress,
+.alert {
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+  margin-top: 2%;
+}
+
+.progress {
+  justify-content: center;
+  align-items: center;
+}
+
 html {
   background-color: #121212;
   color: #fff;

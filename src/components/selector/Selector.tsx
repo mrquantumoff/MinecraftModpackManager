@@ -7,15 +7,16 @@ import "./Selector.css";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { platform } from "@tauri-apps/api/os";
-import { Alert, CircularProgress } from "@mui/material";
+import { Alert, LinearProgress } from "@mui/material";
 import { checkUpdate, installUpdate } from "@tauri-apps/api/updater";
 import { relaunch, exit } from "@tauri-apps/api/process";
 import { confirm } from "@tauri-apps/api/dialog";
+import { IInstallerProps } from "../modpackinstaller/installer";
 
-export default function Selector() {
+export default function Selector(props: IInstallerProps) {
   const [options, setOptions] = useState(["No options"]);
-  const [isAutoCompleteActive, setIsAutoCompleteActive] =
-    useState<boolean>(true);
+  const isAutoCompleteActive = props.isButtonEnabled;
+  const setIsAutoCompleteActive = props.setIsButtonEnabled;
   const [progress, setProgress] = useState<any>(null);
 
   const openModpack = async () => {
@@ -25,12 +26,14 @@ export default function Selector() {
 
   const [openModpackFolder, setOpenModpackFolder] = useState<any>(
     <>
-      <Button
-        variant="contained"
-        disabled={!isAutoCompleteActive}
-        onClick={openModpack}>
-        Open modpacks folder
-      </Button>
+      <div className="openmodpackfolder">
+        <Button
+          variant="contained"
+          disabled={!isAutoCompleteActive}
+          onClick={openModpack}>
+          Open modpacks folder
+        </Button>
+      </div>
     </>
   );
 
@@ -39,7 +42,7 @@ export default function Selector() {
     const mcFolder = await getMinecraftFolder();
     const os = await platform();
     setIsAutoCompleteActive(false);
-    setProgress(<CircularProgress />);
+    setProgress(<LinearProgress />);
     try {
       await invoke("clear_modpack", { minecraftfolder: mcFolder });
       setIsAutoCompleteActive(true);
@@ -65,7 +68,7 @@ export default function Selector() {
     const os = await platform();
     try {
       setIsAutoCompleteActive(false);
-      setProgress(<CircularProgress />);
+      setProgress(<LinearProgress />);
       const mcFolder = await getMinecraftFolder();
       if (autoCompleteValue === null) {
         setProgress(
@@ -111,7 +114,7 @@ export default function Selector() {
           <>
             <Alert severity="info">Updating modpack manager...</Alert>
             <br></br>
-            <CircularProgress />
+            <LinearProgress />
           </>
         );
 
@@ -195,7 +198,6 @@ export default function Selector() {
           <Button onClick={func}>Reload</Button>
         </ButtonGroup>
       </div>
-      <br></br>
       {progress}
       <br></br>
       {openModpackFolder}
