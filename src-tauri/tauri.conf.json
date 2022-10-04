@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "Minecraft Modpack Manager",
-    "version": "2.4.0"
+    "version": "2.4.1"
   },
   "tauri": {
     "allowlist": {
@@ -36,7 +36,10 @@
       "category": "Utility",
       "copyright": "2022, Mr. Quantum (Demir Yerli) and contributors with open source libraries",
       "deb": {
-        "depends": []
+        "depends": [],
+        "files": {
+          "/usr/share/appdata/com.mrquantumoff.mcmodpackmanager.appdata.xml": "../com.mrquantumoff.mcmodpackmanager.appdata.xml"
+        }
       },
       "externalBin": [],
       "icon": ["icons/logo.png", "icons/logo.ico"],
