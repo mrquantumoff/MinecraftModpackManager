@@ -4,28 +4,25 @@ runtime: org.gnome.Platform
 runtime-version: '42'
 sdk: org.gnome.Sdk  
 command: minecraft-modpack-manager
-
-
+branch: "v2.4.1"
 
 modules:
   - name: mcmodpackmanager
     buildsystem: simple
     build-commands:
-      - ar -vox minecraft-modpack-manager_2.4.0_amd64.deb
+      - ar -vox minecraft-modpack-manager_2.4.1_amd64.deb
       - tar -xpvf data.tar.gz
       - install -Dm755 -t /app/bin usr/bin/minecraft-modpack-manager
       - install -D usr/share/applications/minecraft-modpack-manager.desktop  /app/share/applications/com.mrquantumoff.mcmodpackmanager.desktop 
       - install -D usr/share/icons/hicolor/500x500/apps/minecraft-modpack-manager.png /app/share/icons/hicolor/500x500/apps/com.mrquantumoff.mcmodpackmanager.png 
-      - install -D usr/share/appdata/com.mrquantumoff.mcmodpackmanager.appdata.xml /app/share/appdata/com.mrquantumoff.mcmodpackmanager.appdata.xml
       
     sources:
       - type: file
-        url: https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.4.0/minecraft-modpack-manager_2.4.0_amd64.deb
-        sha256: 7b2afce795ac928af9372617c01e7410c77ff8f79cd5cb8d5db78b1f9e87b911
+        url: https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.4.1/minecraft-modpack-manager_2.4.1_amd64.deb
+        sha256: 957da6bd495172f5b3c1e991e0be02fc7d6784e125afe73edbc1f8b148e2ce83
 
     cleanup:
       - '*.tar.gz'
-      - 'debian-binary'
 
 finish-args:
   - --share=ipc
