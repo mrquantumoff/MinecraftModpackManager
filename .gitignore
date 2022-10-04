@@ -15,6 +15,7 @@ dist-ssr
 target/
 
 flatpak-build
+flatpak-repo
 .flatpak-builder
 
 .tauri/
