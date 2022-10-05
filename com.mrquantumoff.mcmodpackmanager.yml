@@ -10,16 +10,19 @@ modules:
   - name: mcmodpackmanager
     buildsystem: simple
     build-commands:
-      - ar -vox minecraft-modpack-manager_2.4.1_amd64.deb
+      - ar -vox minecraft-modpack-manager_2.4.2_amd64.deb
       - tar -xpvf data.tar.gz
       - install -Dm755 -t /app/bin usr/bin/minecraft-modpack-manager
-      - install -D usr/share/applications/minecraft-modpack-manager.desktop  /app/share/applications/com.mrquantumoff.mcmodpackmanager.desktop 
-      - install -D usr/share/icons/hicolor/500x500/apps/minecraft-modpack-manager.png /app/share/icons/hicolor/500x500/apps/com.mrquantumoff.mcmodpackmanager.png 
-      
+      - install -D minecraft-modpack-manager.desktop  /app/share/applications/com.mrquantumoff.mcmodpackmanager.desktop 
+      - install -D usr/share/icons/hicolor/500x500/apps/minecraft-modpack-manager.png /app/share/icons/hicolor/500x500/apps/com.mrquantumoff.mcmodpackmanager.png
+      - install -D usr/share/icons/hicolor/256x256/apps/minecraft-modpack-manager.png /app/share/icons/hicolor/256x256/apps/com.mrquantumoff.mcmodpackmanager.png 
+
     sources:
       - type: file
-        url: https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.4.1/minecraft-modpack-manager_2.4.1_amd64.deb
-        sha256: 957da6bd495172f5b3c1e991e0be02fc7d6784e125afe73edbc1f8b148e2ce83
+        path: minecraft-modpack-manager.desktop
+      - type: file
+        url: https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.4.2/minecraft-modpack-manager_2.4.2_amd64.deb
+        sha256: 6c7f53925c40cdda4a46a72b6e566dcef5ea4a2cf89ea0ecfea5e2ff8f3aa7fa
 
     cleanup:
       - '*.tar.gz'

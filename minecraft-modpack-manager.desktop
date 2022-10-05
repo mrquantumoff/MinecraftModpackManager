@@ -1,0 +1,7 @@
+[Desktop Entry]
+Categories=Utility;
+Exec=minecraft-modpack-manager
+Icon=com.mrquantumoff.mcmodpackmanager
+Name=Minecraft Modpack Manager (Flatpak)
+Terminal=false
+Type=Application
