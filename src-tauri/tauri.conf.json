@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "Minecraft Modpack Manager",
-    "version": "2.4.1"
+    "version": "2.4.2"
   },
   "tauri": {
     "allowlist": {
@@ -38,7 +38,7 @@
       "deb": {
         "depends": [],
         "files": {
-          "/usr/share/appdata/com.mrquantumoff.mcmodpackmanager.appdata.xml": "../com.mrquantumoff.mcmodpackmanager.appdata.xml"
+          "/usr/share/metainfo/com.mrquantumoff.mcmodpackmanager.metainfo.xml": "../com.mrquantumoff.mcmodpackmanager.metainfo.xml"
         }
       },
       "externalBin": [],

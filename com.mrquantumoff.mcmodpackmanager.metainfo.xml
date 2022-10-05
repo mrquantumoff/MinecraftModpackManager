@@ -1,5 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
 <id>com.mrquantumoff.mcmodpackmanager</id>
-<metadata_license>BSD-2-Clause</metadata_license>
+<metadata_license>MIT</metadata_license>
+  <project_license>BSD-2-Clause</project_license>
 <name>Minecraft Modpack Manager</name>
 <summary>Manage your modpacks with ease</summary>
 <icon type="remote" width="500" height="500">https://github.com/mrquantumoff/MinecraftModpackManager/raw/master/src-tauri/icons/logo.png</icon>
@@ -8,6 +11,7 @@
     <category>Game</category>
     <category>Utility</category>
 </categories>
+<developer_name>MrQuantumOFF (Demir Yerli) | Published by Bultek.</developer_name>
 <keywords>
   <keyword>minecraft</keyword>
   <keyword>mods</keyword>
@@ -18,3 +22,8 @@
 <releases>
 <release date="2022-10-04" version="2.4.1"></release>
 </releases>
+<provides>
+<binary>minecraft-modpack-manager</binary>
+</provides>
+<launchable type="desktop-id">com.mrquantumoff.mcmodpackmanager.desktop</launchable>
+</component>
