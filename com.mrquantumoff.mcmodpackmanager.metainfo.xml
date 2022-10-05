@@ -17,10 +17,14 @@
   <keyword>mods</keyword>
   <keyword>modding</keyword>
   <keyword>mrquantumoff</keyword>
+  <keyword>modpacks</keyword>
+  <keyword>Minecraft Modpack Manager</keyword>
 </keywords>
 <url>https://github.com/mrquantumoff/MinecraftModpackManager</url>
 <releases>
 <release date="2022-10-04" version="2.4.1"></release>
+<release date="2022-10-05" version="2.4.2"></release>
+<release date="2022-10-05" version="2.4.3"></release>
 </releases>
 <provides>
 <binary>minecraft-modpack-manager</binary>

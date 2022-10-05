@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "Minecraft Modpack Manager",
-    "version": "2.4.2"
+    "version": "2.4.3"
   },
   "tauri": {
     "allowlist": {
@@ -42,7 +42,7 @@
         }
       },
       "externalBin": [],
-      "icon": ["icons/logo256.png", "icons/logo.png", "icons/logo.ico"],
+      "icon": ["icons/logo.png", "icons/logo.ico"],
       "identifier": "com.mrquantumoff.mcmodpackmanager",
       "appimage": {
         "bundleMediaFramework": false
