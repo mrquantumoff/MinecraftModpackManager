@@ -33,7 +33,7 @@ export default function Installer(props: IInstallerProps) {
       filters: [
         {
           name: "Modpack Reference",
-          extensions: ["mcmodpackref"],
+          extensions: ["mcmodpackref", "mcmodpackref.json", "qntmdpck.json"],
         },
       ],
     });
