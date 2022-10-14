@@ -43,7 +43,7 @@
         }
       },
       "externalBin": [],
-      "icon": ["icons/logo.png", "icons/logo.ico"],
+      "icon": ["icons/logohalf.png", "icons/logo.ico"],
       "identifier": "com.mrquantumoff.mcmodpackmanager",
       "appimage": {
         "bundleMediaFramework": false
