@@ -13,13 +13,18 @@ modules:
       - ar -vox minecraft-modpack-manager_2.4.3_amd64.deb
       - tar -xpvf data.tar.gz
       - install -Dm755 -t /app/bin usr/bin/minecraft-modpack-manager
+      - install -D com.mrquantumoff.mcmodpackmanager.metainfo.xml /app/share/metainfo/com.mrquantumoff.mcmodpackmanager.metainfo.xml
       - install -D minecraft-modpack-manager.desktop  /app/share/applications/com.mrquantumoff.mcmodpackmanager.desktop 
       - install -D usr/share/icons/hicolor/500x500/apps/minecraft-modpack-manager.png /app/share/icons/hicolor/500x500/apps/com.mrquantumoff.mcmodpackmanager.png
       - install -D usr/share/icons/hicolor/256x256/apps/com.mrquantumoff.mcmodpackmanager.png  /app/share/icons/hicolor/256x256/apps/com.mrquantumoff.mcmodpackmanager.png 
 
+  
+
     sources:
       - type: file
         path: minecraft-modpack-manager.desktop
+      - type: file
+        path: com.mrquantumoff.mcmodpackmanager.metainfo.xml
       - type: file
         url: https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v2.4.3/minecraft-modpack-manager_2.4.3_amd64.deb
         sha256: 8c0eb6176ba607589429cc42f43dd1a26a126395235a85e55b4fc6f089897c62

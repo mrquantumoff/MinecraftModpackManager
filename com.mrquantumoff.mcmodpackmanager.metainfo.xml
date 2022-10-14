@@ -6,7 +6,9 @@
 <name>Minecraft Modpack Manager</name>
 <summary>Manage your modpacks with ease</summary>
 <icon type="remote" width="500" height="500">https://github.com/mrquantumoff/MinecraftModpackManager/raw/master/src-tauri/icons/logo.png</icon>
-<description>I had a struggle with managing modpacks, so I made an app that does the job!</description>
+<description>
+<p>I had a struggle with managing modpacks, so I made an app that does the job!</p>
+</description>
 <categories>
     <category>Game</category>
     <category>Utility</category>
@@ -20,11 +22,13 @@
   <keyword>modpacks</keyword>
   <keyword>Minecraft Modpack Manager</keyword>
 </keywords>
-<url>https://github.com/mrquantumoff/MinecraftModpackManager</url>
 <releases>
-<release date="2022-10-04" version="2.4.1"></release>
-<release date="2022-10-05" version="2.4.2"></release>
 <release date="2022-10-05" version="2.4.3"></release>
+
+<release date="2022-10-05" version="2.4.2"></release>
+
+<release date="2022-10-04" version="2.4.1"></release>
+
 </releases>
 <provides>
 <binary>minecraft-modpack-manager</binary>
