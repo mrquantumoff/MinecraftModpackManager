@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "Minecraft Modpack Manager",
-    "version": "2.5.0"
+    "version": "2.5.1"
   },
   "tauri": {
     "allowlist": {
@@ -38,9 +38,7 @@
       "deb": {
         "depends": [],
         "files": {
-          "/usr/share/icons/hicolor/256x256/apps/com.mrquantumoff.mcmodpackmanager.png": "./icons/logohalf.png",
-          "/usr/share/metainfo/com.mrquantumoff.mcmodpackmanager.metainfo.xml": "../com.mrquantumoff.mcmodpackmanager.metainfo.xml"
-        }
+          "/usr/share/icons/hicolor/256x256/apps/com.mrquantumoff.mcmodpackmanager.png": "./icons/logohalf.png"        }
       },
       "externalBin": [],
       "icon": ["icons/logohalf.png", "icons/logo.ico"],
