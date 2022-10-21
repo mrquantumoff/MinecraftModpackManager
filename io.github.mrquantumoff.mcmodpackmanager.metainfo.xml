@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
+<!-- This file might be a bit old, I maintain the manifest on flathub  - https://github.com/flathub/io.github.mrquantumoff.mcmodpackmanager -->
 <id>io.github.mrquantumoff.mcmodpackmanager</id>
 <metadata_license>MIT</metadata_license>
   <project_license>BSD-2-Clause</project_license>
