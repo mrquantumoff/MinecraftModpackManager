@@ -8,6 +8,8 @@
 * Do the common installation process for your os
 
 
+## [Available on Flathub](https://flathub.org/apps/details/io.github.mrquantumoff.mcmodpackmanager)
+
 Other info is available on the [wiki](https://github.com/mrquantumoff/MinecraftModpackManager/wiki)
 
 ## Warning: this app will remove any installed mods after first time of applying/clearing modpacks
