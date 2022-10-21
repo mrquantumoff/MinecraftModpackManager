@@ -101,8 +101,8 @@ export default function Selector(props: IInstallerProps) {
 
   // Gets options from the backend
   const func = async () => {
+    const os = await platform();
     try {
-      const os = await platform();
       if (os === "darwin") {
         setOpenModpackFolder(null);
       }
@@ -123,7 +123,13 @@ export default function Selector(props: IInstallerProps) {
         await relaunch();
       }
     } catch (error: any) {
-      setProgress(<Alert severity="error">{error}</Alert>);
+      if (os==="linux") {
+        setIsAutoCompleteActive(true);
+        setProgress(<Alert severity="warning">Error while updating, don't worry if you run flathub edition, the update will be available in 30-40 minutes, else you should read the error message ({error})</Alert>);
+      }
+      else {
+        setProgress(<Alert severity="error">{error}</Alert>);
+      }
       console.log(error);
     }
 

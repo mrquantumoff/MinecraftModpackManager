@@ -1,6 +1,6 @@
 [package]
 name = "mcmodpackmanager"
-version = "2.5.1"
+version = "2.5.2"
 description = "My Minecraft modpack manager"
 authors = ["Demir Yerli <mrquantumoff@protonmail.com>"]
 license = "BSD-2-Clause"
