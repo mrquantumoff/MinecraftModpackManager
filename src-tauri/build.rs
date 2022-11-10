@@ -18,6 +18,7 @@ fn main() {
 </assembly>
 "#,
         );
+        res.compile().unwrap();
     }
     tauri_build::build()
 }
