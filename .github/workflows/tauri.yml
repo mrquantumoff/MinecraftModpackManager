@@ -52,7 +52,7 @@ jobs:
           prerelease: false
       - name: Build flatpak
         if: matrix.platform == 'ubuntu-22.04'
-        uses: "../actions/action.yml"
+        uses: "mrquantumoff/MinecraftModpackManager@master"
         with:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           PRIVATE_KEY: ${{secrets.TAURI_PRIVATE_KEY}}
