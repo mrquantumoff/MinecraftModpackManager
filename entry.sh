@@ -7,18 +7,18 @@ sudo dnf install cargo rust nodejs gh -y
 
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 
-cd /src
 
-~/.local/share/pnpm/pnpm install
 
-~/.local/share/pnpm/pnpm buildt
+cd /src && ~/.local/share/pnpm/pnpm install
 
-/bin/gh auth --with-token < $GITHUB_TOKEN
+cd /src && ~/.local/share/pnpm/pnpm buildt
 
-mv target/release/bundle/deb/*.deb flatpak-file-do-not-use.deb
+cd /src && /bin/gh auth --with-token < $GITHUB_TOKEN
 
-/bin/gh release upload -R mrquantumoff/MinecraftModpackManager $(git describe --tags --abbrev=0) flatpak-file-do-not-use.deb
+mv/src/target/release/bundle/deb/*.deb flatpak-file-do-not-use.deb
 
-sha256sum flatpak-file-do-not-use.deb >> flatpak-file-do-not-use.sha256sum
-/bin/gh release upload -R mrquantumoff/MinecraftModpackManager $(git describe --tags --abbrev=0) flatpak-file-do-not-use.sha256sum
+cd /src && /bin/gh release upload -R mrquantumoff/MinecraftModpackManager $(git describe --tags --abbrev=0) flatpak-file-do-not-use.deb
+
+cd /src && sha256sum flatpak-file-do-not-use.deb >> flatpak-file-do-not-use.sha256sum
+cd /src && /bin/gh release upload -R mrquantumoff/MinecraftModpackManager $(git describe --tags --abbrev=0) flatpak-file-do-not-use.sha256sum
 
