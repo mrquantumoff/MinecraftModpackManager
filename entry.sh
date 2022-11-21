@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo dnf upgrade -y
-sudo dnf install git webkit2gtk3-devel.x86_64 openssl-devel curl wget libappindicator-gtk3 librsvg2-devel librsvg2-devel -y
+sudo dnf install git webkit2gtk3-devel.x86_64 openssl-devel curl wget libappindicator-gtk3 librsvg2-devel glib2-devel -y
 sudo dnf group install "C Development Tools and Libraries" -y
 
 sudo dnf install cargo rust nodejs gh -y
