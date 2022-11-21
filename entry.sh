@@ -1,25 +1,24 @@
 #!/bin/bash
 sudo dnf upgrade -y
-sudo dnf install webkit2gtk3-devel.x86_64 openssl-devel curl wget libappindicator-gtk3 librsvg2-devel librsvg2-devel -y
+sudo dnf install git webkit2gtk3-devel.x86_64 openssl-devel curl wget libappindicator-gtk3 librsvg2-devel librsvg2-devel -y
 sudo dnf group install "C Development Tools and Libraries" -y
 
-sudo dnf install cargo rust nodejs -y
+sudo dnf install cargo rust nodejs gh -y
 
-corepack enable
-corepack prepare pnpm@latest --activate
+curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 cd /src
 
-pnpm install
+~/.local/share/pnpm/pnpm install
 
-pnpm buildt
+~/.local/share/pnpm/pnpm buildt
 
-gh auth --with-token < $GITHUB_TOKEN
+/bin/gh auth --with-token < $GITHUB_TOKEN
 
 mv target/release/bundle/deb/*.deb flatpak-file-do-not-use.deb
 
-gh release upload -R mrquantumoff/MinecraftModpackManager $(git describe --tags --abbrev=0) flatpak-file-do-not-use.deb
+/bin/gh release upload -R mrquantumoff/MinecraftModpackManager $(git describe --tags --abbrev=0) flatpak-file-do-not-use.deb
 
 sha256sum flatpak-file-do-not-use.deb >> flatpak-file-do-not-use.sha256sum
-gh release upload -R mrquantumoff/MinecraftModpackManager $(git describe --tags --abbrev=0) flatpak-file-do-not-use.sha256sum
+/bin/gh release upload -R mrquantumoff/MinecraftModpackManager $(git describe --tags --abbrev=0) flatpak-file-do-not-use.sha256sum
 
