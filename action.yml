@@ -8,10 +8,10 @@ inputs:
   GH_TOKEN:
     description: Github Token
     required: true
-    runs:
-      using: 'docker'
-      image: 'Dockerfile'
-      args:  
-        - --build-arg PRIVATE_KEY=${{inputs.PRIVATE_KEY}}
-        - --build-arg TAURI_PASSWORD=""
-        - --build-arg GITHUB_TOKEN=${{inputs.GH_TOKEN}}
+  runs:
+    using: 'docker'
+    image: 'Dockerfile'
+    args:  
+      - --build-arg PRIVATE_KEY=${{inputs.PRIVATE_KEY}}
+      - --build-arg TAURI_PASSWORD=""
+      - --build-arg GITHUB_TOKEN=${{inputs.GH_TOKEN}}
