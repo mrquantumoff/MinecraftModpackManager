@@ -50,20 +50,10 @@ jobs:
           releaseBody: 'Update'
           releaseDraft: false
           prerelease: false
-  flatpak-build:
-    strategy:
-      fail-fast: false
-      runs:
-        using: 'docker'
-        image: 'Dockerfile'
-        args: 
-          - --build-arg PRIVATE_KEY=${{secrets.TAURI_PRIVATE_KEY}}
-          - --build-arg TAURI_PASSWORD=${{secrets.TAURI_KEY_PASSWORD}}
-          - --build-arg GITHUB_TOKEN=${{secrets.GITHUB_TOKEN}}
-
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
-          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_PASSWORD }}
-          GITHUB_FLATPAK_REPO_TOKEN: ${{ secrets.GITHUB_FLATPAK_REPO_TOKEN}}
+            - name: Build flatpak
+      - name: Build flatpak
+        if: matrix.platform == 'ubuntu-22.04'
+        uses: "../actions/action.yml"
+        with:
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PRIVATE_KEY: ${{secrets.TAURI_PRIVATE_KEY}}
