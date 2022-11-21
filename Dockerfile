@@ -17,4 +17,6 @@ ENV TAURI_KEY_PASSWORD ${TAURI_PASSWORD}
 
 ADD . /src
 
-ENTRYPOINT ["/entry.sh"]
+
+
+ENTRYPOINT ["./entry.sh"]
