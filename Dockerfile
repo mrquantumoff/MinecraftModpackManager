@@ -1,8 +1,6 @@
 # Since Fedora uses the latest version of GNOME, the build will be compatible with the latest SDK
 FROM fedora:latest
 
-RUN chmod +x /greetings.sh
-
 ARG PRIVATE_KEY
 
 ARG TAURI_PASSWORD
