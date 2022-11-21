@@ -50,7 +50,6 @@ jobs:
           releaseBody: 'Update'
           releaseDraft: false
           prerelease: false
-            - name: Build flatpak
       - name: Build flatpak
         if: matrix.platform == 'ubuntu-22.04'
         uses: "../actions/action.yml"
