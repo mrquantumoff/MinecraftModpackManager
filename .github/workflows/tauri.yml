@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest, ubuntu-20.04, windows-latest]
+        platform: [macos-latest, ubuntu-22.04, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout repository
@@ -19,18 +19,18 @@ jobs:
       - name: Node.js setup
         uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 18
       - name: Install pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@7.12.1 --activate
+          corepack prepare pnpm@latest --activate
       - name: Rust setup
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
 
       - name: Install dependencies (ubuntu only)
-        if: matrix.platform == 'ubuntu-20.04'
+        if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev patchelf
@@ -50,3 +50,20 @@ jobs:
           releaseBody: 'Update'
           releaseDraft: false
           prerelease: false
+  flatpak-build:
+    strategy:
+      fail-fast: false
+      runs:
+        using: 'docker'
+        image: 'Dockerfile'
+        args: 
+          - --build-arg PRIVATE_KEY=${{secrets.TAURI_PRIVATE_KEY}}
+          - --build-arg TAURI_PASSWORD=${{secrets.TAURI_KEY_PASSWORD}}
+          - --build-arg GITHUB_TOKEN=${{secrets.GITHUB_TOKEN}}
+
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_PASSWORD }}
+          GITHUB_FLATPAK_REPO_TOKEN: ${{ secrets.GITHUB_FLATPAK_REPO_TOKEN}}

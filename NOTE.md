@@ -1,0 +1,1 @@
+This project uses Dockerfile for the flatpak CI/CD Build, DO NOT USE Dockerfile unless you know what you're doing
