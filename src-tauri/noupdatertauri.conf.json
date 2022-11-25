@@ -1,0 +1,110 @@
+{
+  "build": {
+    "beforeDevCommand": "pnpm run dev",
+    "beforeBuildCommand": "pnpm run build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "Minecraft Modpack Manager",
+    "version": "2.6.0-noupdater"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": true,
+      "fs": {
+        "all": true,
+        "scope": ["*"]
+      },
+      "path": {
+        "all": true
+      },
+      "os": {
+        "all": true
+      },
+      "dialog": {
+        "all": true
+      },
+      "http": {
+        "all": true,
+        "request": true,
+        "scope": ["http://*", "https://*"]
+      }
+    },
+    "bundle": {
+      "active": true,
+      "category": "Utility",
+      "copyright": "2022, Mr. Quantum (Demir Yerli) and contributors with open source libraries",
+      "deb": {
+        "depends": [],
+        "files": {
+          "/usr/share/icons/hicolor/256x256/apps/com.mrquantumoff.mcmodpackmanager.png": "./icons/logohalf.png"        }
+      },
+      "externalBin": [],
+      "icon": ["icons/logo.png", "icons/logo.ico"],
+      "identifier": "com.mrquantumoff.mcmodpackmanager",
+      "appimage": {
+        "bundleMediaFramework": false
+      },
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": "",
+        "webviewInstallMode": {
+          "silent": true,
+          "type": "embedBootstrapper"
+        },
+        "wix": {
+          "license": "../LICENSE"
+        }
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false,
+      "dialog": false,
+      "endpoints": [
+        "https://github.com/mrquantumoff/MinecraftModpackManager/raw/master/version.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDJDQzU5OUQyQzE5NDFGQkEKUldTNkg1VEIwcG5GTEYrNHBadTMybnhlZ1hLWUNld3kwcVJqVGFQQkt1TFJRdWJIRnNHT3hFYisK"
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "minHeight": 700,
+        "resizable": true,
+        "title": "Minecraft Modpack Manager",
+        "minWidth": 800,
+        "maxHeight": 780,
+        "maxWidth": 960,
+        "center": true,
+        "fileDropEnabled": false
+      },
+      {
+        "width": 520,
+        "height": 520,
+        "decorations": false,
+        "url": "splashscreen.html",
+        "label": "splashscreen",
+        "title": "Minecraft Modpack Manager",
+        "alwaysOnTop": true,
+        "focus": true,
+        "fileDropEnabled": false,
+        "center": true
+      }
+    ]
+  }
+}
