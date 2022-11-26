@@ -8,16 +8,20 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { platform } from "@tauri-apps/api/os";
 import { Alert, LinearProgress } from "@mui/material";
-import { checkUpdate, installUpdate } from "@tauri-apps/api/updater";
+import { checkUpdate, installUpdate, } from "@tauri-apps/api/updater";
 import { relaunch, exit } from "@tauri-apps/api/process";
 import { confirm } from "@tauri-apps/api/dialog";
 import { IInstallerProps } from "../modpackinstaller/installer";
+
+import { getVersion } from '@tauri-apps/api/app';
 
 export default function Selector(props: IInstallerProps) {
   const [options, setOptions] = useState(["No options"]);
   const isAutoCompleteActive = props.isButtonEnabled;
   const setIsAutoCompleteActive = props.setIsButtonEnabled;
   const [progress, setProgress] = useState<any>(null);
+
+  const [shallUpdate, setShallUpdate] = useState<boolean>(false);
 
   const openModpack = async () => {
     const mcFolder = await getMinecraftFolder();
@@ -107,8 +111,9 @@ export default function Selector(props: IInstallerProps) {
         setOpenModpackFolder(null);
       }
       await invoke("close_splashscreen");
-      const { shouldUpdate } = await checkUpdate();
-      if (shouldUpdate) {
+      const update = await checkUpdate();
+      const appVersion = await getVersion();
+      if (update.shouldUpdate && os !== "linux") {
         setIsAutoCompleteActive(false);
         setProgress(
           <>
@@ -122,10 +127,27 @@ export default function Selector(props: IInstallerProps) {
         // install complete, restart app
         await relaunch();
       }
+      else {
+        const up = async () => {
+          try {
+            setIsAutoCompleteActive(false);
+            await installUpdate()
+            await relaunch();
+          }
+          catch (error: any) {
+            setIsAutoCompleteActive(true);
+            setProgress(<Alert severity="warning">Error while updating,this is common for flatpak. In case you are not running flatpak consider reading the error message ({error})</Alert>);
+          }
+        };
+        setProgress(<>
+          <Alert severity="info">There might be an update available ({appVersion} to {update.manifest?.version}), since you're running GNU+Linux the app has no idea whether it can update itself or not, the only way to find out is to try, do you wish to try?</Alert>
+          <Button onClick={up}>Try to update</Button>
+        </>)
+      }
     } catch (error: any) {
-      if (os==="linux") {
+      if (os === "linux") {
         setIsAutoCompleteActive(true);
-        setProgress(<Alert severity="warning">Error while updating, don't worry if you run flathub edition, the update will be available in 30-40 minutes, else you should read the error message ({error})</Alert>);
+        setProgress(<Alert severity="info">Error while updating,this is common for flatpak. In case you are not running flatpak consider reading the error message ({error})</Alert>);
       }
       else {
         setProgress(<Alert severity="error">{error}</Alert>);

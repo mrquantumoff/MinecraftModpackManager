@@ -5,7 +5,7 @@ edition = "2021"
 license = "BSD-2-Clause"
 name = "mcmodpackmanager"
 repository = ""
-version = "2.6.1"
+version = "2.7.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
