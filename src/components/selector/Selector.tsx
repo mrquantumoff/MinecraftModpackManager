@@ -113,37 +113,40 @@ export default function Selector(props: IInstallerProps) {
       await invoke("close_splashscreen");
       const update = await checkUpdate();
       const appVersion = await getVersion();
-      if (update.shouldUpdate && os !== "linux") {
-        setIsAutoCompleteActive(false);
-        setProgress(
-          <>
-            <Alert severity="info">Updating modpack manager...</Alert>
-            <br></br>
-            <LinearProgress />
-          </>
-        );
+      if (update.shouldUpdate) {
+        if (os === "darwin" || os === "win32") {
+          setIsAutoCompleteActive(false);
+          setProgress(
+            <>
+              <Alert severity="info">Updating modpack manager...</Alert>
+              <br></br>
+              <LinearProgress />
+            </>
+          );
 
-        await installUpdate();
-        // install complete, restart app
-        await relaunch();
+          await installUpdate();
+          // install complete, restart app
+          await relaunch();
+        }
+        else {
+          const up = async () => {
+            try {
+              setIsAutoCompleteActive(false);
+              await installUpdate()
+              await relaunch();
+            }
+            catch (error: any) {
+              setIsAutoCompleteActive(true);
+              setProgress(<Alert severity="warning">Error while updating,this is common for flatpak. In case you are not running flatpak consider reading the error message ({error})</Alert>);
+            }
+          };
+          setProgress(<>
+            <Alert severity="info">There might be an update available ({appVersion} to {update.manifest?.version}), since you're running GNU+Linux the app has no idea whether it can update itself or not, the only way to find out is to try, do you wish to try?</Alert>
+            <Button onClick={up}>Try to update</Button>
+          </>)
+        }
       }
-      else {
-        const up = async () => {
-          try {
-            setIsAutoCompleteActive(false);
-            await installUpdate()
-            await relaunch();
-          }
-          catch (error: any) {
-            setIsAutoCompleteActive(true);
-            setProgress(<Alert severity="warning">Error while updating,this is common for flatpak. In case you are not running flatpak consider reading the error message ({error})</Alert>);
-          }
-        };
-        setProgress(<>
-          <Alert severity="info">There might be an update available ({appVersion} to {update.manifest?.version}), since you're running GNU+Linux the app has no idea whether it can update itself or not, the only way to find out is to try, do you wish to try?</Alert>
-          <Button onClick={up}>Try to update</Button>
-        </>)
-      }
+
     } catch (error: any) {
       if (os === "linux") {
         setIsAutoCompleteActive(true);
