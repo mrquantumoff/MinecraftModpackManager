@@ -2,7 +2,7 @@ import { ThemeProvider } from "@mui/material";
 import createTheme from "@mui/material/styles/createTheme";
 import React, { useState } from "react";
 import Heading from "./components/heading/heading";
-import Installer from "./components/modpackinstaller/installer";
+import Installer from "./components/modpackInstaller-new/Installer";
 import Selector from "./components/selector/Selector";
 
 function App() {
@@ -11,16 +11,22 @@ function App() {
   //   event.preventDefault();
   // });
   const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(true);
+  const [downloadProgressElement, setDownloadProgressElement] = useState<any>();
   return (
     <div className="container">
       <ThemeProvider theme={darkTheme}>
         <Heading></Heading>
         <Selector
           isButtonEnabled={isButtonEnabled}
-          setIsButtonEnabled={setIsButtonEnabled}></Selector>
+          setIsButtonEnabled={setIsButtonEnabled}
+          setDownloadProgressElement={setDownloadProgressElement}
+          downloadProgressElement={downloadProgressElement}></Selector>
         <Installer
           isButtonEnabled={isButtonEnabled}
-          setIsButtonEnabled={setIsButtonEnabled}></Installer>
+          setIsButtonEnabled={setIsButtonEnabled}
+          setDownloadProgressElement={setDownloadProgressElement}
+          downloadProgressElement={downloadProgressElement}></Installer>
+        <div>{downloadProgressElement}</div>
       </ThemeProvider>
     </div>
   );

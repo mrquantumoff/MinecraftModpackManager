@@ -11,7 +11,7 @@ import { Alert, LinearProgress } from "@mui/material";
 import { checkUpdate, installUpdate, } from "@tauri-apps/api/updater";
 import { relaunch, exit } from "@tauri-apps/api/process";
 import { confirm } from "@tauri-apps/api/dialog";
-import { IInstallerProps } from "../modpackinstaller/installer";
+import { IInstallerProps } from "../../Interfaces";
 
 import { getVersion } from '@tauri-apps/api/app';
 
@@ -20,8 +20,6 @@ export default function Selector(props: IInstallerProps) {
   const isAutoCompleteActive = props.isButtonEnabled;
   const setIsAutoCompleteActive = props.setIsButtonEnabled;
   const [progress, setProgress] = useState<any>(null);
-
-  const [shallUpdate, setShallUpdate] = useState<boolean>(false);
 
   const openModpack = async () => {
     const mcFolder = await getMinecraftFolder();
