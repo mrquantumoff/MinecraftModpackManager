@@ -7,7 +7,7 @@ import "./Selector.css";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { platform } from "@tauri-apps/api/os";
-import { Alert, LinearProgress } from "@mui/material";
+import { Alert, CircularProgress } from "@mui/material";
 import { checkUpdate, installUpdate, } from "@tauri-apps/api/updater";
 import { relaunch, exit } from "@tauri-apps/api/process";
 import { confirm } from "@tauri-apps/api/dialog";
@@ -44,7 +44,7 @@ export default function Selector(props: IInstallerProps) {
     const mcFolder = await getMinecraftFolder();
     const os = await platform();
     setIsAutoCompleteActive(false);
-    setProgress(<LinearProgress />);
+    setProgress(<CircularProgress />);
     try {
       await invoke("clear_modpack", { minecraftfolder: mcFolder });
       setIsAutoCompleteActive(true);
@@ -70,7 +70,7 @@ export default function Selector(props: IInstallerProps) {
     const os = await platform();
     try {
       setIsAutoCompleteActive(false);
-      setProgress(<LinearProgress />);
+      setProgress(<CircularProgress />);
       const mcFolder = await getMinecraftFolder();
       if (autoCompleteValue === null) {
         setProgress(
@@ -118,7 +118,7 @@ export default function Selector(props: IInstallerProps) {
             <>
               <Alert severity="info">Updating modpack manager...</Alert>
               <br></br>
-              <LinearProgress />
+              <CircularProgress />
             </>
           );
 

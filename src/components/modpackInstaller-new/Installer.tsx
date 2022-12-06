@@ -142,12 +142,12 @@ export default function NewInstaller(props: IInstallerProps) {
                 <Dialog open={isSubDialogOpen}>
                     <DialogTitle>Please enter your modpack metadata</DialogTitle>
                     <DialogContent>
-                        <Input fullWidth placeholder="Name" onChange={(event) => {
+                        <Input fullWidth placeholder="Name" onChange={(event: any) => {
                             modpackName = event.target.value;
                         }}></Input>
                         <br />
                         <br />
-                        <Input fullWidth placeholder="URL" onChange={(event) => {
+                        <Input fullWidth placeholder="URL" onChange={(event: any) => {
                             modpackUrl = event.target.value;
                         }} type="text"></Input>
                     </DialogContent>
