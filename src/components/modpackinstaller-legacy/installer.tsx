@@ -1,4 +1,4 @@
-import { Alert, Button, LinearProgress } from "@mui/material";
+import { Alert, Button, CircularProgress } from "@mui/material";
 import React, { useState } from "react";
 import "./installer.css";
 import { open } from "@tauri-apps/api/dialog";
@@ -69,7 +69,7 @@ export const RefInstall = async (config: InstallerConfig) => {
   } else {
     const conts = await readTextFile(selected);
     const reference: RefScheme = await JSON.parse(conts);
-    setDownloadProgressElement(<LinearProgress />);
+    setDownloadProgressElement(<CircularProgress></CircularProgress>);
 
     const tempdirPath = await tempdir();
     const mcFolder = await getMinecraftFolder();

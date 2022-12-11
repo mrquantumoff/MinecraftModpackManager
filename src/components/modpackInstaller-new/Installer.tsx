@@ -104,11 +104,11 @@ export default function NewInstaller(props: IInstallerProps) {
                 );
             }
         }
+        setIsButtonEnabled(true);
     }
 
     const ReferenceInstall = async () => {
         setIsMainDialogOpen(false);
-        setInfo(<CircularProgress></CircularProgress>)
         await RefInstall({
             setDownloadProgressElement: setInfo,
             setIsButtonEnabled: setIsButtonEnabled
@@ -117,6 +117,7 @@ export default function NewInstaller(props: IInstallerProps) {
 
     const closeSubDialog = async () => {
         setIsSubDialogOpen(false);
+        setIsButtonEnabled(false);
         await startMInstall();
     }
 
@@ -152,7 +153,6 @@ export default function NewInstaller(props: IInstallerProps) {
                         }} type="text"></Input>
                     </DialogContent>
                     <DialogActions>
-
                         <Button onClick={closeSubDialog}>Install</Button>
                     </DialogActions>
                 </Dialog>

@@ -19,6 +19,7 @@ use std::fs::create_dir_all;
 /// Boilerplate code for tauri
 #[tokio::main]
 async fn main() {
+    println!("Dev mode: {}", is_dev_env().await.unwrap());
     tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
             println!("{}, {argv:?}, {cwd}", app.package_info().name);
@@ -231,6 +232,13 @@ async fn are_mods_symlinks(minecraftfolder: String) -> Result<bool, String> {
 
         Err(_) => Err("Failed to get metadata".to_string()),
     }
+}
+
+/// Will be used in the future (3.1 probably)
+#[tauri::command]
+async fn is_dev_env() -> Result<bool, String> {
+    // By default custom protocol is only enabled for production builds.
+    Ok(!cfg!(feature = "custom-protocol"))
 }
 
 #[cfg(test)]

@@ -1,15 +1,13 @@
 import { ThemeProvider } from "@mui/material";
 import createTheme from "@mui/material/styles/createTheme";
+import { invoke } from "@tauri-apps/api";
 import React, { useState } from "react";
 import Heading from "./components/heading/heading";
 import Installer from "./components/modpackInstaller-new/Installer";
 import Selector from "./components/selector/Selector";
 
 function App() {
-  // Disable right click to fix some bugs
-  // document.addEventListener("contextmenu", (event) => {
-  //   event.preventDefault();
-  // });
+
   const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(true);
   const [downloadProgressElement, setDownloadProgressElement] = useState<any>();
   return (
