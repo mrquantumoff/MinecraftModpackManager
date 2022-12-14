@@ -21,9 +21,6 @@ use std::fs::create_dir_all;
 async fn main() {
     println!("Dev mode: {}", is_dev_env().await.unwrap());
     tauri::Builder::default()
-        .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
-            println!("{}, {argv:?}, {cwd}", app.package_info().name);
-        }))
         .invoke_handler(tauri::generate_handler![
             get_modpack_options,
             clear_modpack,
