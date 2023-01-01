@@ -1,0 +1,12 @@
+{
+    "tauri": {
+        "updater": {
+            "active": false,
+            "dialog": true,
+            "pubkey": "",
+            "windows": {
+                "installMode": "passive"
+            }
+        }
+    }
+}
