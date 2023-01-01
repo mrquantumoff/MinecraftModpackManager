@@ -251,18 +251,23 @@ export default function NewInstaller(props: IInstallerProps) {
         <>
             <ChakraProvider>
                 <div className="newInstaller">
-                    <Button className="InstallerButton button" isDisabled={!isButtonEnabled} onClick={async () => { await install() }}>Install a modpack (beta)</Button>
+                    <Button className="InstallerButton button" isDisabled={!isButtonEnabled} onClick={async () => { await install() }}>Install a modpack</Button>
                 </div>
 
                 <div className="InstallerDialogs">
                     <Modal isOpen={isMainDialogOpen} onClose={() => { setIsMainDialogOpen(false) }}>
                         <ModalOverlay></ModalOverlay>
+
                         <ModalContent>
+                            <ModalCloseButton onClick={() => {
+                                setIsMainDialogOpen(false);
+                            }}></ModalCloseButton>
+                            <div className="closebutton-separator"></div>
                             <ModalHeader>How would you like to enter your modpack metadata?</ModalHeader>
                             <ModalFooter>
 
-                                <Button onClick={ManualInstall} className="dialog-buttons">Manual Input</Button>
-                                <Button onClick={ReferenceInstall} className="dialog-buttons">Reference file</Button>
+                                <Button colorScheme="telegram" onClick={ManualInstall} className="dialog-buttons">Manual Input</Button>
+                                <Button colorScheme="orange" onClick={ReferenceInstall} className="dialog-buttons">Reference file</Button>
 
                             </ModalFooter>
                         </ModalContent>
@@ -270,9 +275,10 @@ export default function NewInstaller(props: IInstallerProps) {
                     <Modal isOpen={isSubDialogOpen} onClose={() => { }}>
                         <ModalOverlay></ModalOverlay>
                         <ModalContent>
+                            <div className="closebutton-separator"></div>
                             <ModalHeader>Please enter your modpack metadata</ModalHeader>
                             <ModalBody>
-                                <br></br>
+                                {/* <br></br> */}
                                 <Input placeholder="Name" onChange={(event: any) => {
                                     modpackName = event.target.value;
                                 }}></Input>
@@ -284,7 +290,7 @@ export default function NewInstaller(props: IInstallerProps) {
 
                             </ModalBody>
                             <ModalFooter>
-                                <Button onClick={closeSubDialog}>Install</Button>
+                                <Button colorScheme="blue" onClick={closeSubDialog}>Install</Button>
                                 <ModalCloseButton onClick={() => {
                                     setIsSubDialogOpen(false);
                                 }}></ModalCloseButton>

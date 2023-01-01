@@ -4,7 +4,6 @@
   place-items: center;
   justify-content: center;
 }
-
 .progress,
 .alert {
   justify-content: center;
@@ -19,5 +18,9 @@
 }
 
 .button {
-  margin-top: 20px;
+  margin-top: 5%;
+}
+
+.closebutton-separator {
+  margin-top: 5%;
 }

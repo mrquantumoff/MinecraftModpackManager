@@ -8,7 +8,7 @@ use std::path::PathBuf;
 
 use std::fs;
 
-use tauri::Manager;
+// use tauri::Manager;
 
 use std::fs::File;
 
@@ -27,7 +27,7 @@ async fn main() {
             set_modpack,
             open_modpacks_folder,
             are_mods_symlinks,
-            close_splashscreen,
+            // close_splashscreen,
             install_mc_mods
         ])
         .run(tauri::generate_context!())
@@ -257,15 +257,15 @@ mod tests {
     }
 }
 
-#[tauri::command]
-async fn close_splashscreen(window: tauri::Window) {
-    // Close splashscreen
-    if let Some(splashscreen) = window.get_window("splashscreen") {
-        splashscreen.close().unwrap();
-    }
-    // Show main window
-    window.get_window("main").unwrap().show().unwrap();
-}
+// #[tauri::command]
+// async fn close_splashscreen(window: tauri::Window) {
+//     // Close splashscreen
+//     if let Some(splashscreen) = window.get_window("splashscreen") {
+//         splashscreen.close().unwrap();
+//     }
+//     // Show main window
+//     window.get_window("main").unwrap().show().unwrap();
+// }
 
 #[tauri::command]
 async fn install_mc_mods(

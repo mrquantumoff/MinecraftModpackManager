@@ -9,11 +9,14 @@ import { confirm } from "@tauri-apps/api/dialog";
 import { IInstallerProps } from "../../Interfaces";
 
 import { getVersion } from '@tauri-apps/api/app';
-import { Button, ButtonGroup, ChakraProvider, CircularProgress, Select } from "@chakra-ui/react";
+import { Button, ButtonGroup, ChakraProvider, CircularProgress, Container, Menu, MenuButton, MenuItem, MenuList, Select } from "@chakra-ui/react";
 import {
   Alert,
   AlertTitle
 } from '@chakra-ui/react'
+import { CheckIcon, ChevronDownIcon, DeleteIcon, RepeatIcon } from "@chakra-ui/icons";
+
+
 export default function Selector(props: IInstallerProps) {
 
   const [options, setOptions] = useState(["No options"]);
@@ -109,6 +112,8 @@ export default function Selector(props: IInstallerProps) {
     }
   };
 
+
+
   // Gets options from the backend
   const func = async () => {
     const os = await platform();
@@ -116,7 +121,7 @@ export default function Selector(props: IInstallerProps) {
       if (os === "darwin") {
         setOpenModpackFolder(null);
       }
-      await invoke("close_splashscreen");
+
       const update = await checkUpdate();
       const appVersion = await getVersion();
       if (update.shouldUpdate) {
@@ -230,16 +235,22 @@ export default function Selector(props: IInstallerProps) {
         </div>
         <div className="buttons">
           <ButtonGroup variant="solid" isDisabled={!isAutoCompleteActive}>
-            <Button disabled={autoCompleteValue === null} onClick={applyModpack}>
-              Apply
-            </Button>
-            <Button onClick={setModsFree}>Clear</Button>
-            <Button onClick={func}>Reload</Button>
+            <Menu>
+              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                Actions
+              </MenuButton>
+              <MenuList>
+                <MenuItem disabled={autoCompleteValue === null} color="green.500" onClick={applyModpack} icon={<CheckIcon />}>
+                  Apply
+                </MenuItem>
+                <MenuItem onClick={setModsFree} color="red.500" icon={<DeleteIcon />}>Clear</MenuItem>
+                <MenuItem onClick={func} color="blue.500" icon={<RepeatIcon />}>Reload</MenuItem>
+              </MenuList>
+            </Menu>
           </ButtonGroup>
         </div>
-        <br></br>
         {progress}
-        <br></br>
+        <div className="progress-separator"></div>
         {openModpackFolder}
       </ChakraProvider>
     </>

@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import ProductTitle from "./components/heading/heading";
 import Installer from "./components/modpackInstaller-new/Installer";
 import Selector from "./components/selector/Selector";
-import { Center, ChakraProvider } from "@chakra-ui/react";
+import { Center, ChakraProvider, Container } from "@chakra-ui/react";
+import { invoke } from "@tauri-apps/api";
+
 function App() {
 
   const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(true);
   const [downloadProgressElement, setDownloadProgressElement] = useState<any>();
+  // invoke("close_splashscreen").catch(() => { });
   return (
-    <div className="container">
-      <ChakraProvider>
+
+    <ChakraProvider>
+      <div className="container">
         <ProductTitle></ProductTitle>
         <Selector
           isButtonEnabled={isButtonEnabled}
@@ -22,8 +26,9 @@ function App() {
           setDownloadProgressElement={setDownloadProgressElement}
           downloadProgressElement={downloadProgressElement}></Installer>
         <div>{downloadProgressElement}</div>
-      </ChakraProvider>
-    </div>
+      </div>
+    </ChakraProvider>
+
   );
 }
 export default App;
