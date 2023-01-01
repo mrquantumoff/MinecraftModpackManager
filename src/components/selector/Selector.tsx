@@ -9,12 +9,12 @@ import { confirm } from "@tauri-apps/api/dialog";
 import { IInstallerProps } from "../../Interfaces";
 
 import { getVersion } from '@tauri-apps/api/app';
-import { Button, ButtonGroup, ChakraProvider, CircularProgress, Container, Menu, MenuButton, MenuItem, MenuList, Select } from "@chakra-ui/react";
+import { Button, ButtonGroup, ChakraProvider, CircularProgress, Container, Menu, MenuButton, MenuItem, MenuList, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverTrigger, Portal, Select } from "@chakra-ui/react";
 import {
   Alert,
   AlertTitle
 } from '@chakra-ui/react'
-import { CheckIcon, ChevronDownIcon, DeleteIcon, RepeatIcon } from "@chakra-ui/icons";
+import { CheckIcon, ChevronDownIcon, CloseIcon, DeleteIcon, RepeatIcon } from "@chakra-ui/icons";
 
 
 export default function Selector(props: IInstallerProps) {
@@ -23,6 +23,7 @@ export default function Selector(props: IInstallerProps) {
   const isAutoCompleteActive = props.isButtonEnabled;
   const setIsAutoCompleteActive = props.setIsButtonEnabled;
   const [progress, setProgress] = useState<any>(null);
+  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 
   const openModpack = async () => {
     const mcFolder = await getMinecraftFolder();
@@ -42,6 +43,7 @@ export default function Selector(props: IInstallerProps) {
 
   // Set mods folder free
   const setModsFree = async () => {
+    setIsPopoverOpen(false);
     const mcFolder = await getMinecraftFolder();
     const os = await platform();
     setIsAutoCompleteActive(false);
@@ -73,6 +75,7 @@ export default function Selector(props: IInstallerProps) {
   };
 
   const applyModpack = async () => {
+    setIsPopoverOpen(false);
     const os = await platform();
     try {
       setIsAutoCompleteActive(false);
@@ -116,6 +119,7 @@ export default function Selector(props: IInstallerProps) {
 
   // Gets options from the backend
   const func = async () => {
+    setIsPopoverOpen(false);
     const os = await platform();
     try {
       if (os === "darwin") {
@@ -234,20 +238,29 @@ export default function Selector(props: IInstallerProps) {
           </Select>
         </div>
         <div className="buttons">
-          <ButtonGroup variant="solid" isDisabled={!isAutoCompleteActive}>
-            <Menu>
-              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+          <Popover
+            isOpen={isPopoverOpen}>
+            <PopoverTrigger>
+              <Button onClick={() => { setIsPopoverOpen(true); }} rightIcon={<ChevronDownIcon />}>
                 Actions
-              </MenuButton>
-              <MenuList>
-                <MenuItem disabled={autoCompleteValue === null} color="green.500" onClick={applyModpack} icon={<CheckIcon />}>
-                  Apply
-                </MenuItem>
-                <MenuItem onClick={setModsFree} color="red.500" icon={<DeleteIcon />}>Clear</MenuItem>
-                <MenuItem onClick={func} color="blue.500" icon={<RepeatIcon />}>Reload</MenuItem>
-              </MenuList>
-            </Menu>
-          </ButtonGroup>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent width={"110%"}>
+              <PopoverArrow />
+              <PopoverCloseButton onClick={() => {
+                setIsPopoverOpen(false);
+              }} />
+              <PopoverBody>
+                <ButtonGroup isAttached>
+                  <Button disabled={autoCompleteValue === null} color="green.500" onClick={applyModpack} rightIcon={<CheckIcon />}>
+                    Apply
+                  </Button>
+                  <Button onClick={setModsFree} color="red.500" rightIcon={<DeleteIcon />}>Clear</Button>
+                  <Button onClick={func} color="blue.500" rightIcon={<RepeatIcon />}>Reload</Button>
+                </ButtonGroup>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
         </div>
         {progress}
         <div className="progress-separator"></div>

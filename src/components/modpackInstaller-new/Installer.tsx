@@ -16,6 +16,7 @@ import {
     ModalBody,
     ModalCloseButton,
 } from '@chakra-ui/react'
+import { DownloadIcon } from "@chakra-ui/icons";
 
 export const RefInstall = async (config: InstallerConfig) => {
     const setIsButtonEnabled = config.setIsButtonEnabled;
@@ -246,12 +247,11 @@ export default function NewInstaller(props: IInstallerProps) {
         // setInfo(
         setIsMainDialogOpen(true);
     }
-
     return (
         <>
             <ChakraProvider>
                 <div className="newInstaller">
-                    <Button className="InstallerButton button" isDisabled={!isButtonEnabled} onClick={async () => { await install() }}>Install a modpack</Button>
+                    <Button className="InstallerButton button" rightIcon={<DownloadIcon />} isDisabled={!isButtonEnabled} onClick={async () => { await install() }}>Install a modpack</Button>
                 </div>
 
                 <div className="InstallerDialogs">
