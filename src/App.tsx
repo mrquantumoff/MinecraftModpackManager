@@ -1,19 +1,16 @@
-import { ThemeProvider } from "@mui/material";
-import createTheme from "@mui/material/styles/createTheme";
-import { invoke } from "@tauri-apps/api";
 import React, { useState } from "react";
-import Heading from "./components/heading/heading";
+import ProductTitle from "./components/heading/heading";
 import Installer from "./components/modpackInstaller-new/Installer";
 import Selector from "./components/selector/Selector";
-
+import { Center, ChakraProvider } from "@chakra-ui/react";
 function App() {
 
   const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(true);
   const [downloadProgressElement, setDownloadProgressElement] = useState<any>();
   return (
     <div className="container">
-      <ThemeProvider theme={darkTheme}>
-        <Heading></Heading>
+      <ChakraProvider>
+        <ProductTitle></ProductTitle>
         <Selector
           isButtonEnabled={isButtonEnabled}
           setIsButtonEnabled={setIsButtonEnabled}
@@ -25,15 +22,8 @@ function App() {
           setDownloadProgressElement={setDownloadProgressElement}
           downloadProgressElement={downloadProgressElement}></Installer>
         <div>{downloadProgressElement}</div>
-      </ThemeProvider>
+      </ChakraProvider>
     </div>
   );
 }
-
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
-
 export default App;

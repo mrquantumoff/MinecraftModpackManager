@@ -18,7 +18,6 @@
   align-items: center;
 }
 
-html {
-  background-color: #121212;
-  color: #fff;
+.button {
+  margin-top: 20px;
 }

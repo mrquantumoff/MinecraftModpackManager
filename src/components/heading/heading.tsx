@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Typography } from "@mui/material";
 import "./heading.css";
-
-export default function Heading() {
+import { ChakraProvider, Heading } from '@chakra-ui/react'
+export default function ProductTitle() {
   return (
     <>
-      <div className="heading">
-        <Typography variant="h3">Minecraft Modpack Manager</Typography>
-      </div>
+      <ChakraProvider>
+        <div className="heading">
+          <Heading as="h3" size="2xl">Minecraft Modpack Manager</Heading>
+        </div>
+      </ChakraProvider>
     </>
   );
 }
