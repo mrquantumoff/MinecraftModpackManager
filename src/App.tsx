@@ -4,6 +4,7 @@ import Installer from "./components/modpackInstaller-new/Installer";
 import Selector from "./components/selector/Selector";
 import { Center, ChakraProvider, Container } from "@chakra-ui/react";
 import { invoke } from "@tauri-apps/api";
+import Decorations from "./components/decorations/decorations";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
   return (
 
     <ChakraProvider>
+      <Decorations></Decorations>
       <div className="container">
         <ProductTitle></ProductTitle>
         <Selector

@@ -1,0 +1,10 @@
+.decorations {
+  display: grid;
+  margin-right: 1%;
+  justify-content: end;
+  /* background-color: black; */
+}
+
+.decorations-in {
+  margin-top: 3%;
+}

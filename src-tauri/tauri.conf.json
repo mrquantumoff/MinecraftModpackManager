@@ -89,7 +89,7 @@
         "title": "Minecraft Modpack Manager",
         "minWidth": 800,
         "center": true,
-        "decorations": true,
+        "decorations": false,
         "fileDropEnabled": false
       }
     ]
