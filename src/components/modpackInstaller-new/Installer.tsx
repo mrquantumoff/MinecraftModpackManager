@@ -7,7 +7,7 @@ import getMinecraftFolder from "../../tools/getMinecraftFolder";
 import "./installer.css";
 import { open } from "@tauri-apps/api/dialog";
 import { readTextFile } from "@tauri-apps/api/fs";
-import { Alert, AlertIcon, AlertTitle, Button, CircularProgress, Input, Modal } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertTitle, Button, ButtonGroup, CircularProgress, CloseButton, Input, Modal, Popover, PopoverArrow, PopoverContent, PopoverFooter, PopoverHeader, PopoverTrigger } from "@chakra-ui/react";
 import {
     ModalOverlay,
     ModalContent,
@@ -261,28 +261,26 @@ export default function NewInstaller(props: IInstallerProps) {
     return (
         <>
 
-            <div className="newInstaller">
+            {/* <div className="newInstaller">
                 <Button className="InstallerButton button" rightIcon={<DownloadIcon />} isDisabled={!isButtonEnabled} onClick={async () => { await install() }}>Install a modpack</Button>
-            </div>
+            </div> */}
 
             <div className="InstallerDialogs">
-                <Modal isOpen={isMainDialogOpen} onClose={() => { setIsMainDialogOpen(false) }}>
-                    <ModalOverlay></ModalOverlay>
-
-                    <ModalContent>
-                        <ModalCloseButton onClick={() => {
-                            setIsMainDialogOpen(false);
-                        }}></ModalCloseButton>
-                        <div className="closebutton-separator"></div>
-                        <ModalHeader>How would you like to enter your modpack metadata?</ModalHeader>
-                        <ModalFooter>
-
-                            <Button colorScheme="telegram" onClick={ManualInstall} className="dialog-buttons">Manual Input</Button>
-                            <Button colorScheme="orange" onClick={ReferenceInstall} className="dialog-buttons">Reference file</Button>
-
-                        </ModalFooter>
-                    </ModalContent>
-                </Modal>
+                <Popover isOpen={isMainDialogOpen} onClose={() => { setIsMainDialogOpen(false) }}>
+                    <PopoverTrigger>
+                        <Button className="InstallerButton button" isDisabled={!isButtonEnabled} onClick={async () => { await install() }} rightIcon={<DownloadIcon></DownloadIcon>}>Install a modpack</Button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                        <PopoverArrow></PopoverArrow>
+                        <PopoverHeader>How would you like to enter your modpack metadata?</PopoverHeader>
+                        <PopoverFooter>
+                            <ButtonGroup isAttached>
+                                <Button colorScheme="telegram" onClick={ManualInstall} className="dialog-buttons">Manual Input</Button>
+                                <Button colorScheme="orange" onClick={ReferenceInstall} className="dialog-buttons">Reference file</Button>
+                            </ButtonGroup>
+                        </PopoverFooter>
+                    </PopoverContent>
+                </Popover>
                 <Modal isOpen={isSubDialogOpen} onClose={() => { }}>
                     <ModalOverlay></ModalOverlay>
                     <ModalContent>
