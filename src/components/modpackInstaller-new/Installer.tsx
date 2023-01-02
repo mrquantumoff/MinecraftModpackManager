@@ -7,7 +7,7 @@ import getMinecraftFolder from "../../tools/getMinecraftFolder";
 import "./installer.css";
 import { open } from "@tauri-apps/api/dialog";
 import { readTextFile } from "@tauri-apps/api/fs";
-import { Alert, AlertTitle, Button, ChakraProvider, CircularProgress, Input, Modal } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertTitle, Button, ChakraProvider, CircularProgress, Input, Modal } from "@chakra-ui/react";
 import {
     ModalOverlay,
     ModalContent,
@@ -39,6 +39,7 @@ export const RefInstall = async (config: InstallerConfig) => {
 
                 <Alert className="alert" status="error">
                     <AlertTitle>No proper file was selected.</AlertTitle>
+                    <AlertIcon />
                 </Alert>
 
             </>
@@ -62,6 +63,7 @@ export const RefInstall = async (config: InstallerConfig) => {
 
                 <Alert className="alert" status="success">
                     <AlertTitle>Modpack has been installed successfully</AlertTitle>
+                    <AlertIcon />
                 </Alert>
 
             );
@@ -85,6 +87,7 @@ export const RefInstall = async (config: InstallerConfig) => {
                                 <AlertTitle>
                                     Modpack has been installed successfully
                                 </AlertTitle>
+                                <AlertIcon />
                             </Alert>
 
                         );
@@ -93,6 +96,7 @@ export const RefInstall = async (config: InstallerConfig) => {
 
                             <Alert className="alert" status="error">
                                 <AlertTitle>Error while installing modpack ({err})</AlertTitle>
+                                <AlertIcon />
                             </Alert>
 
                         );
@@ -102,6 +106,7 @@ export const RefInstall = async (config: InstallerConfig) => {
 
                         <Alert className="alert" status="error">
                             <AlertTitle>Error while installing modpack ({e})</AlertTitle>
+                            <AlertIcon />
                         </Alert>
 
                     );
@@ -111,6 +116,7 @@ export const RefInstall = async (config: InstallerConfig) => {
 
                     <Alert className="alert" status="error">
                         <AlertTitle>Error while installing modpack ({e})</AlertTitle>
+                        <AlertIcon />
                     </Alert>
 
                 );
@@ -174,6 +180,7 @@ export default function NewInstaller(props: IInstallerProps) {
 
                 <Alert className="alert" status="success">
                     <AlertTitle>Modpack has been installed successfully</AlertTitle>
+                    <AlertIcon />
                 </Alert>
 
             );
@@ -195,6 +202,7 @@ export default function NewInstaller(props: IInstallerProps) {
 
                             <Alert className="alert" status="success">
                                 <AlertTitle>Modpack has been installed successfully</AlertTitle>
+                                <AlertIcon />
                             </Alert>
 
                         );
@@ -203,6 +211,7 @@ export default function NewInstaller(props: IInstallerProps) {
 
                             <Alert className="alert" status="error">
                                 <AlertTitle> Error while installing modpack ({err})</AlertTitle>
+                                <AlertIcon />
                             </Alert>
 
                         );
@@ -212,6 +221,7 @@ export default function NewInstaller(props: IInstallerProps) {
 
                         <Alert className="alert" status="error">
                             <AlertTitle> Error while installing modpack ({e})</AlertTitle>
+                            <AlertIcon />
                         </Alert>
 
                     );
@@ -221,6 +231,7 @@ export default function NewInstaller(props: IInstallerProps) {
 
                     <Alert className="alert" status="error">
                         <AlertTitle> Error while installing modpack ({e})</AlertTitle>
+                        <AlertIcon />
                     </Alert>
 
                 );
