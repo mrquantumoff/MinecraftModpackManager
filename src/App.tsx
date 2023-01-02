@@ -5,11 +5,24 @@ import Selector from "./components/selector/Selector";
 import { ChakraProvider, useColorMode } from "@chakra-ui/react";
 import Decorations from "./components/decorations/decorations";
 import theme from './theme'
+import { invoke } from "@tauri-apps/api";
 
 export default function App() {
 
   const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(true);
   const [downloadProgressElement, setDownloadProgressElement] = useState<any>();
+  invoke("is_dev_env").catch(() => { }).then((res) => {
+    console.log(res);
+    if (res !== null) {
+      if (res === false) {
+        //  Disable right click to fix some bugs
+        document.addEventListener("contextmenu", (event) => {
+          event.preventDefault();
+        });
+      }
+    }
+  });
+
 
   return (
     <ChakraProvider theme={theme}>

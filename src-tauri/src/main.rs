@@ -28,7 +28,8 @@ async fn main() {
             open_modpacks_folder,
             are_mods_symlinks,
             // close_splashscreen,
-            install_mc_mods
+            install_mc_mods,
+            is_dev_env,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -231,7 +232,7 @@ async fn are_mods_symlinks(minecraftfolder: String) -> Result<bool, String> {
     }
 }
 
-/// Will be used in the future (3.1 probably)
+/// Used for a bug fix
 #[tauri::command]
 async fn is_dev_env() -> Result<bool, String> {
     // By default custom protocol is only enabled for production builds.
@@ -256,17 +257,6 @@ mod tests {
         Ok(())
     }
 }
-
-// #[tauri::command]
-// async fn close_splashscreen(window: tauri::Window) {
-//     // Close splashscreen
-//     if let Some(splashscreen) = window.get_window("splashscreen") {
-//         splashscreen.close().unwrap();
-//     }
-//     // Show main window
-//     window.get_window("main").unwrap().show().unwrap();
-// }
-
 #[tauri::command]
 async fn install_mc_mods(
     download_url: &str,
