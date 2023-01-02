@@ -9,12 +9,12 @@ import { confirm } from "@tauri-apps/api/dialog";
 import { IInstallerProps } from "../../Interfaces";
 
 import { getVersion } from '@tauri-apps/api/app';
-import { AlertIcon, Button, ButtonGroup, ChakraProvider, CircularProgress, Container, Menu, MenuButton, MenuItem, MenuList, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverTrigger, Portal, Select } from "@chakra-ui/react";
+import { AlertIcon, Button, ButtonGroup, CircularProgress, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverTrigger, Select } from "@chakra-ui/react";
 import {
   Alert,
   AlertTitle
 } from '@chakra-ui/react'
-import { CheckIcon, ChevronDownIcon, CloseIcon, DeleteIcon, RepeatIcon } from "@chakra-ui/icons";
+import { CheckIcon, ChevronDownIcon, DeleteIcon, RepeatIcon } from "@chakra-ui/icons";
 
 
 export default function Selector(props: IInstallerProps) {

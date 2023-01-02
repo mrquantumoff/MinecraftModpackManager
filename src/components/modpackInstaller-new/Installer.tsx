@@ -7,7 +7,7 @@ import getMinecraftFolder from "../../tools/getMinecraftFolder";
 import "./installer.css";
 import { open } from "@tauri-apps/api/dialog";
 import { readTextFile } from "@tauri-apps/api/fs";
-import { Alert, AlertIcon, AlertTitle, Button, ChakraProvider, CircularProgress, Input, Modal } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertTitle, Button, CircularProgress, Input, Modal } from "@chakra-ui/react";
 import {
     ModalOverlay,
     ModalContent,
