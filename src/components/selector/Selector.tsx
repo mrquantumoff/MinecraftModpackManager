@@ -31,14 +31,14 @@ export default function Selector(props: IInstallerProps) {
   };
 
   const [openModpackFolder, setOpenModpackFolder] = useState<any>(
-    <ChakraProvider>
-      <Button
-        variant="solid"
-        isDisabled={!isAutoCompleteActive}
-        onClick={openModpack}>
-        Open modpacks folder
-      </Button>
-    </ChakraProvider>
+
+    <Button
+      variant="solid"
+      isDisabled={!isAutoCompleteActive}
+      onClick={openModpack}>
+      Open modpacks folder
+    </Button>
+
   );
 
   // Set mods folder free
@@ -47,28 +47,28 @@ export default function Selector(props: IInstallerProps) {
     const mcFolder = await getMinecraftFolder();
     const os = await platform();
     setIsAutoCompleteActive(false);
-    setProgress(<ChakraProvider> <CircularProgress isIndeterminate={true} /></ChakraProvider >);
+    setProgress(<CircularProgress isIndeterminate={true} />);
     try {
       await invoke("clear_modpack", { minecraftfolder: mcFolder });
       setIsAutoCompleteActive(true);
       setProgress(
-        <ChakraProvider ><Alert status="success"><AlertTitle>Modpack cleared successfully</AlertTitle></Alert></ChakraProvider>
+        <Alert status="success"><AlertTitle>Modpack cleared successfully</AlertTitle></Alert>
       );
     } catch (err) {
       console.error(err);
       if (os === "win32") {
         setProgress(
-          <ChakraProvider ><Alert status="error">
+          <Alert status="error">
             <AlertTitle>Failed to clear modpacks, try running the app as admin</AlertTitle>
-          </Alert></ChakraProvider >
+          </Alert>
         );
       } else {
         setProgress(
-          <ChakraProvider >
-            <Alert status="error">
-              <AlertTitle>Failed to clear modpacks</AlertTitle>
-            </Alert>
-          </ChakraProvider >);
+
+          <Alert status="error">
+            <AlertTitle>Failed to clear modpacks</AlertTitle>
+          </Alert>
+        );
       }
       setIsAutoCompleteActive(true);
     }
@@ -79,15 +79,15 @@ export default function Selector(props: IInstallerProps) {
     const os = await platform();
     try {
       setIsAutoCompleteActive(false);
-      setProgress(<ChakraProvider > <CircularProgress isIndeterminate={true} /></ChakraProvider >);
+      setProgress(<CircularProgress isIndeterminate={true} />);
       const mcFolder = await getMinecraftFolder();
       if (autoCompleteValue === null) {
         setProgress(
-          <ChakraProvider >
-            <Alert status="warning">
-              <AlertTitle>Please choose a modpack or set mods free by clearing the modpack</AlertTitle>
-            </Alert>
-          </ChakraProvider >
+
+          <Alert status="warning">
+            <AlertTitle>Please choose a modpack or set mods free by clearing the modpack</AlertTitle>
+          </Alert>
+
         );
       } else {
         await invoke("set_modpack", {
@@ -96,20 +96,20 @@ export default function Selector(props: IInstallerProps) {
         });
       }
       setIsAutoCompleteActive(true);
-      setProgress(<ChakraProvider ><Alert status="success">
-        <AlertTitle>Modpack set successfully</AlertTitle></Alert></ChakraProvider >);
+      setProgress(<Alert status="success">
+        <AlertTitle>Modpack set successfully</AlertTitle></Alert>);
     } catch (err) {
       console.error(err);
       if (os == "win32") {
         setProgress(
-          <ChakraProvider >
-            <Alert status="error">
-              <AlertTitle>Failed to clear modpacks, try running the app as admin</AlertTitle>
-            </Alert>
-          </ChakraProvider >
+
+          <Alert status="error">
+            <AlertTitle>Failed to clear modpacks, try running the app as admin</AlertTitle>
+          </Alert>
+
         );
       } else {
-        setProgress(<ChakraProvider ><Alert status="error">Failed to clear modpacks</Alert></ChakraProvider>);
+        setProgress(<Alert status="error">Failed to clear modpacks</Alert>);
       }
       setIsAutoCompleteActive(true);
     }
@@ -133,13 +133,13 @@ export default function Selector(props: IInstallerProps) {
           setIsAutoCompleteActive(false);
           setProgress(
             <>
-              <ChakraProvider>
-                <Alert status="info">
-                  <AlertTitle>Updating modpack manager...</AlertTitle>
-                </Alert>
-                <br></br>
-                <CircularProgress isIndeterminate={true} />
-              </ChakraProvider >
+
+              <Alert status="info">
+                <AlertTitle>Updating modpack manager...</AlertTitle>
+              </Alert>
+              <br></br>
+              <CircularProgress isIndeterminate={true} />
+
             </>
           );
 
@@ -156,16 +156,16 @@ export default function Selector(props: IInstallerProps) {
             }
             catch (error: any) {
               setIsAutoCompleteActive(true);
-              setProgress(<ChakraProvider><Alert status="warning">
+              setProgress(<Alert status="warning">
                 <AlertTitle>Error while updating,this is common for flatpak. In case you are not running flatpak consider reading the error message ({error})</AlertTitle>
-              </Alert></ChakraProvider>);
+              </Alert>);
             }
           };
           setProgress(<>
-            <ChakraProvider>
-              <Alert status="info"><AlertTitle>There might be an update available ({appVersion} to {update.manifest?.version}), since you're running GNU+Linux the app has no idea whether it can update itself or not, the only way to find out is to try, do you wish to try?</AlertTitle></Alert>
-              <Button onClick={up}>Try to update</Button>
-            </ChakraProvider>
+
+            <Alert status="info"><AlertTitle>There might be an update available ({appVersion} to {update.manifest?.version}), since you're running GNU+Linux the app has no idea whether it can update itself or not, the only way to find out is to try, do you wish to try?</AlertTitle></Alert>
+            <Button onClick={up}>Try to update</Button>
+
           </>)
         }
       }
@@ -173,10 +173,10 @@ export default function Selector(props: IInstallerProps) {
     } catch (error: any) {
       if (os === "linux") {
         setIsAutoCompleteActive(true);
-        setProgress(<ChakraProvider ><Alert status="info"><AlertTitle>Error while updating, this is common for flatpak. In case you are not running flatpak consider reading the error message ({error})</AlertTitle></Alert></ChakraProvider>);
+        setProgress(<Alert status="info"><AlertTitle>Error while updating, this is common for flatpak. In case you are not running flatpak consider reading the error message ({error})</AlertTitle></Alert>);
       }
       else {
-        setProgress(<ChakraProvider ><Alert status="error"><AlertTitle>{error}</AlertTitle></Alert></ChakraProvider>);
+        setProgress(<Alert status="error"><AlertTitle>{error}</AlertTitle></Alert>);
       }
       console.log(error);
     }
@@ -223,49 +223,49 @@ export default function Selector(props: IInstallerProps) {
 
   return (
     <>
-      <ChakraProvider>
-        <div className="selector">
-          <Select
-            id="selectorAutocomplete"
-            sx={{ width: 290 }}
-            isDisabled={!isAutoCompleteActive}
-            onChange={(value: any) => setAutoCompleteValue(value.target.value)}
-          >
-            {options.map((possibleOption) => {
-              return <option key={possibleOption}>{possibleOption}</option>
-            })}
 
-          </Select>
-        </div>
-        <div className="buttons">
-          <Popover
-            isOpen={isPopoverOpen}>
-            <PopoverTrigger>
-              <Button onClick={() => { setIsPopoverOpen(true); }} rightIcon={<ChevronDownIcon />}>
-                Actions
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent width={"110%"}>
-              <PopoverArrow />
-              <PopoverCloseButton onClick={() => {
-                setIsPopoverOpen(false);
-              }} />
-              <PopoverBody>
-                <ButtonGroup isAttached>
-                  <Button disabled={autoCompleteValue === null} color="green.500" onClick={applyModpack} rightIcon={<CheckIcon />}>
-                    Apply
-                  </Button>
-                  <Button onClick={setModsFree} color="red.500" rightIcon={<DeleteIcon />}>Clear</Button>
-                  <Button onClick={func} color="blue.500" rightIcon={<RepeatIcon />}>Reload</Button>
-                </ButtonGroup>
-              </PopoverBody>
-            </PopoverContent>
-          </Popover>
-        </div>
-        {progress}
-        <div className="progress-separator"></div>
-        {openModpackFolder}
-      </ChakraProvider>
+      <div className="selector">
+        <Select
+          id="selectorAutocomplete"
+          sx={{ width: 290 }}
+          isDisabled={!isAutoCompleteActive}
+          onChange={(value: any) => setAutoCompleteValue(value.target.value)}
+        >
+          {options.map((possibleOption) => {
+            return <option key={possibleOption}>{possibleOption}</option>
+          })}
+
+        </Select>
+      </div>
+      <div className="buttons">
+        <Popover
+          isOpen={isPopoverOpen}>
+          <PopoverTrigger>
+            <Button onClick={() => { setIsPopoverOpen(true); }} rightIcon={<ChevronDownIcon />}>
+              Actions
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent width={"110%"}>
+            <PopoverArrow />
+            <PopoverCloseButton onClick={() => {
+              setIsPopoverOpen(false);
+            }} />
+            <PopoverBody>
+              <ButtonGroup isAttached>
+                <Button disabled={autoCompleteValue === null} color="green.500" onClick={applyModpack} rightIcon={<CheckIcon />}>
+                  Apply
+                </Button>
+                <Button onClick={setModsFree} color="red.500" rightIcon={<DeleteIcon />}>Clear</Button>
+                <Button onClick={func} color="blue.500" rightIcon={<RepeatIcon />}>Reload</Button>
+              </ButtonGroup>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </div>
+      {progress}
+      <div className="progress-separator"></div>
+      {openModpackFolder}
+
     </>
   );
 }

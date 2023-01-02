@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "Minecraft Modpack Manager",
-    "version": "4.0.0"
+    "version": "4.1.0"
   },
   "tauri": {
     "allowlist": {
@@ -29,6 +29,9 @@
         "all": true,
         "request": true,
         "scope": ["http://*", "https://*"]
+      },
+      "window": {
+        "all": true
       }
     },
     "bundle": {

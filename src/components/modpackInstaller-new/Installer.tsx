@@ -36,17 +36,17 @@ export const RefInstall = async (config: InstallerConfig) => {
     if (selected === null || Array.isArray(selected)) {
         setDownloadProgressElement(
             <>
-                <ChakraProvider>
-                    <Alert className="alert" status="error">
-                        <AlertTitle>No proper file was selected.</AlertTitle>
-                    </Alert>
-                </ChakraProvider>
+
+                <Alert className="alert" status="error">
+                    <AlertTitle>No proper file was selected.</AlertTitle>
+                </Alert>
+
             </>
         );
     } else {
         const conts = await readTextFile(selected);
         const reference: RefScheme = await JSON.parse(conts);
-        setDownloadProgressElement(<ChakraProvider><br></br><CircularProgress isIndeterminate={true}></CircularProgress></ChakraProvider>);
+        setDownloadProgressElement(<><br></br><CircularProgress isIndeterminate={true}></CircularProgress></>);
 
         const tempdirPath = await tempdir();
         const mcFolder = await getMinecraftFolder();
@@ -59,11 +59,11 @@ export const RefInstall = async (config: InstallerConfig) => {
                 forceinstall: false,
             });
             setDownloadProgressElement(
-                <ChakraProvider >
-                    <Alert className="alert" status="success">
-                        <AlertTitle>Modpack has been installed successfully</AlertTitle>
-                    </Alert>
-                </ChakraProvider>
+
+                <Alert className="alert" status="success">
+                    <AlertTitle>Modpack has been installed successfully</AlertTitle>
+                </Alert>
+
             );
         } catch (e: any) {
             if (e === "Modpack exists") {
@@ -80,39 +80,39 @@ export const RefInstall = async (config: InstallerConfig) => {
                             forceinstall: true,
                         });
                         setDownloadProgressElement(
-                            <ChakraProvider>
-                                <Alert className="alert" status="success">
-                                    <AlertTitle>
-                                        Modpack has been installed successfully
-                                    </AlertTitle>
-                                </Alert>
-                            </ChakraProvider>
+
+                            <Alert className="alert" status="success">
+                                <AlertTitle>
+                                    Modpack has been installed successfully
+                                </AlertTitle>
+                            </Alert>
+
                         );
                     } catch (err: any) {
                         setDownloadProgressElement(
-                            <ChakraProvider>
-                                <Alert className="alert" status="error">
-                                    <AlertTitle>Error while installing modpack ({err})</AlertTitle>
-                                </Alert>
-                            </ChakraProvider>
+
+                            <Alert className="alert" status="error">
+                                <AlertTitle>Error while installing modpack ({err})</AlertTitle>
+                            </Alert>
+
                         );
                     }
                 } else {
                     setDownloadProgressElement(
-                        <ChakraProvider >
-                            <Alert className="alert" status="error">
-                                <AlertTitle>Error while installing modpack ({e})</AlertTitle>
-                            </Alert>
-                        </ChakraProvider>
+
+                        <Alert className="alert" status="error">
+                            <AlertTitle>Error while installing modpack ({e})</AlertTitle>
+                        </Alert>
+
                     );
                 }
             } else {
                 setDownloadProgressElement(
-                    <ChakraProvider>
-                        <Alert className="alert" status="error">
-                            <AlertTitle>Error while installing modpack ({e})</AlertTitle>
-                        </Alert>
-                    </ChakraProvider >
+
+                    <Alert className="alert" status="error">
+                        <AlertTitle>Error while installing modpack ({e})</AlertTitle>
+                    </Alert>
+
                 );
             }
         }
@@ -161,7 +161,7 @@ export default function NewInstaller(props: IInstallerProps) {
         // Install
         const tempdirPath = await tempdir();
         const mcFolder = await getMinecraftFolder();
-        setInfo(<ChakraProvider > <br></br> <CircularProgress isIndeterminate={true}></CircularProgress></ChakraProvider >)
+        setInfo(<><br></br><CircularProgress isIndeterminate={true}></CircularProgress></>)
         try {
             await invoke("install_mc_mods", {
                 minecraftfolder: mcFolder,
@@ -171,11 +171,11 @@ export default function NewInstaller(props: IInstallerProps) {
                 forceinstall: false,
             });
             setInfo(
-                <ChakraProvider >
-                    <Alert className="alert" status="success">
-                        <AlertTitle>Modpack has been installed successfully</AlertTitle>
-                    </Alert>
-                </ChakraProvider>
+
+                <Alert className="alert" status="success">
+                    <AlertTitle>Modpack has been installed successfully</AlertTitle>
+                </Alert>
+
             );
         } catch (e: any) {
             if (e === "Modpack exists") {
@@ -192,37 +192,37 @@ export default function NewInstaller(props: IInstallerProps) {
                             forceinstall: true,
                         });
                         setInfo(
-                            <ChakraProvider >
-                                <Alert className="alert" status="success">
-                                    <AlertTitle>Modpack has been installed successfully</AlertTitle>
-                                </Alert>
-                            </ChakraProvider>
+
+                            <Alert className="alert" status="success">
+                                <AlertTitle>Modpack has been installed successfully</AlertTitle>
+                            </Alert>
+
                         );
                     } catch (err: any) {
                         setInfo(
-                            <ChakraProvider >
-                                <Alert className="alert" status="error">
-                                    <AlertTitle> Error while installing modpack ({err})</AlertTitle>
-                                </Alert>
-                            </ChakraProvider>
+
+                            <Alert className="alert" status="error">
+                                <AlertTitle> Error while installing modpack ({err})</AlertTitle>
+                            </Alert>
+
                         );
                     }
                 } else {
                     setInfo(
-                        <ChakraProvider >
-                            <Alert className="alert" status="error">
-                                <AlertTitle> Error while installing modpack ({e})</AlertTitle>
-                            </Alert>
-                        </ChakraProvider>
+
+                        <Alert className="alert" status="error">
+                            <AlertTitle> Error while installing modpack ({e})</AlertTitle>
+                        </Alert>
+
                     );
                 }
             } else {
                 setInfo(
-                    <ChakraProvider >
-                        <Alert className="alert" status="error">
-                            <AlertTitle> Error while installing modpack ({e})</AlertTitle>
-                        </Alert>
-                    </ChakraProvider>
+
+                    <Alert className="alert" status="error">
+                        <AlertTitle> Error while installing modpack ({e})</AlertTitle>
+                    </Alert>
+
                 );
             }
         }
@@ -249,57 +249,57 @@ export default function NewInstaller(props: IInstallerProps) {
     }
     return (
         <>
-            <ChakraProvider>
-                <div className="newInstaller">
-                    <Button className="InstallerButton button" rightIcon={<DownloadIcon />} isDisabled={!isButtonEnabled} onClick={async () => { await install() }}>Install a modpack</Button>
-                </div>
 
-                <div className="InstallerDialogs">
-                    <Modal isOpen={isMainDialogOpen} onClose={() => { setIsMainDialogOpen(false) }}>
-                        <ModalOverlay></ModalOverlay>
+            <div className="newInstaller">
+                <Button className="InstallerButton button" rightIcon={<DownloadIcon />} isDisabled={!isButtonEnabled} onClick={async () => { await install() }}>Install a modpack</Button>
+            </div>
 
-                        <ModalContent>
+            <div className="InstallerDialogs">
+                <Modal isOpen={isMainDialogOpen} onClose={() => { setIsMainDialogOpen(false) }}>
+                    <ModalOverlay></ModalOverlay>
+
+                    <ModalContent>
+                        <ModalCloseButton onClick={() => {
+                            setIsMainDialogOpen(false);
+                        }}></ModalCloseButton>
+                        <div className="closebutton-separator"></div>
+                        <ModalHeader>How would you like to enter your modpack metadata?</ModalHeader>
+                        <ModalFooter>
+
+                            <Button colorScheme="telegram" onClick={ManualInstall} className="dialog-buttons">Manual Input</Button>
+                            <Button colorScheme="orange" onClick={ReferenceInstall} className="dialog-buttons">Reference file</Button>
+
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
+                <Modal isOpen={isSubDialogOpen} onClose={() => { }}>
+                    <ModalOverlay></ModalOverlay>
+                    <ModalContent>
+                        <div className="closebutton-separator"></div>
+                        <ModalHeader>Please enter your modpack metadata</ModalHeader>
+                        <ModalBody>
+                            {/* <br></br> */}
+                            <Input placeholder="Name" onChange={(event: any) => {
+                                modpackName = event.target.value;
+                            }}></Input>
+                            <br />
+                            <br />
+                            <Input placeholder="URL" onChange={(event: any) => {
+                                modpackUrl = event.target.value;
+                            }} type="text"></Input>
+
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button colorScheme="blue" onClick={closeSubDialog}>Install</Button>
                             <ModalCloseButton onClick={() => {
-                                setIsMainDialogOpen(false);
+                                setIsSubDialogOpen(false);
                             }}></ModalCloseButton>
-                            <div className="closebutton-separator"></div>
-                            <ModalHeader>How would you like to enter your modpack metadata?</ModalHeader>
-                            <ModalFooter>
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
 
-                                <Button colorScheme="telegram" onClick={ManualInstall} className="dialog-buttons">Manual Input</Button>
-                                <Button colorScheme="orange" onClick={ReferenceInstall} className="dialog-buttons">Reference file</Button>
+            </div>
 
-                            </ModalFooter>
-                        </ModalContent>
-                    </Modal>
-                    <Modal isOpen={isSubDialogOpen} onClose={() => { }}>
-                        <ModalOverlay></ModalOverlay>
-                        <ModalContent>
-                            <div className="closebutton-separator"></div>
-                            <ModalHeader>Please enter your modpack metadata</ModalHeader>
-                            <ModalBody>
-                                {/* <br></br> */}
-                                <Input placeholder="Name" onChange={(event: any) => {
-                                    modpackName = event.target.value;
-                                }}></Input>
-                                <br />
-                                <br />
-                                <Input placeholder="URL" onChange={(event: any) => {
-                                    modpackUrl = event.target.value;
-                                }} type="text"></Input>
-
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button colorScheme="blue" onClick={closeSubDialog}>Install</Button>
-                                <ModalCloseButton onClick={() => {
-                                    setIsSubDialogOpen(false);
-                                }}></ModalCloseButton>
-                            </ModalFooter>
-                        </ModalContent>
-                    </Modal>
-
-                </div>
-            </ChakraProvider>
         </>
     )
 

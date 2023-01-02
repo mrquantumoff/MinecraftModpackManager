@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import ProductTitle from "./components/heading/heading";
 import Installer from "./components/modpackInstaller-new/Installer";
 import Selector from "./components/selector/Selector";
-import { Center, ChakraProvider, Container } from "@chakra-ui/react";
-import { invoke } from "@tauri-apps/api";
+import { ChakraProvider, useColorMode } from "@chakra-ui/react";
 import Decorations from "./components/decorations/decorations";
+import theme from './theme'
 
-function App() {
+export default function App() {
 
   const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(true);
   const [downloadProgressElement, setDownloadProgressElement] = useState<any>();
-  // invoke("close_splashscreen").catch(() => { });
-  return (
 
-    <ChakraProvider>
+  return (
+    <ChakraProvider theme={theme}>
       <Decorations></Decorations>
       <div className="container">
+
         <ProductTitle></ProductTitle>
         <Selector
           isButtonEnabled={isButtonEnabled}
@@ -33,4 +33,3 @@ function App() {
 
   );
 }
-export default App;
