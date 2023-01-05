@@ -30,17 +30,6 @@ export default function Selector(props: IInstallerProps) {
     await invoke("open_modpacks_folder", { minecraftfolder: mcFolder });
   };
 
-  const [openModpackFolder, setOpenModpackFolder] = useState<any>(
-
-    <Button
-      variant="solid"
-      isDisabled={!isAutoCompleteActive}
-      onClick={openModpack}>
-      Open modpacks folder
-    </Button>
-
-  );
-
   // Set mods folder free
   const setModsFree = async () => {
     setIsPopoverOpen(false);
@@ -128,10 +117,6 @@ export default function Selector(props: IInstallerProps) {
     setIsPopoverOpen(false);
     const os = await platform();
     try {
-      if (os === "darwin") {
-        setOpenModpackFolder(null);
-      }
-
       const update = await checkUpdate();
       const appVersion = await getVersion();
       if (update.shouldUpdate) {
@@ -275,8 +260,12 @@ export default function Selector(props: IInstallerProps) {
       </div>
       {progress}
       <div className="progress-separator"></div>
-      {openModpackFolder}
-
+      <Button
+        variant="solid"
+        isDisabled={!isAutoCompleteActive}
+        onClick={openModpack}>
+        Open modpacks folder
+      </Button>
     </>
   );
 }

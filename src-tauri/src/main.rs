@@ -219,6 +219,13 @@ async fn open_modpacks_folder(minecraftfolder: String) {
             .output()
             .expect("Failed to open modpacks folder");
     }
+    #[cfg(target_os = "macos")]
+    {
+        std::process::Command::new("open")
+            .arg(".")
+            .output()
+            .expect("Failed to open modpacks folder");
+    }
 }
 
 #[tauri::command]
