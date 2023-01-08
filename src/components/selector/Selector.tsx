@@ -201,6 +201,7 @@ export default function Selector(props: IInstallerProps) {
         minecraftfolder: mcFolder,
       });
       setOptions(res);
+      setAutoCompleteValue(res[0]);
     } catch (err) {
       console.error(err);
       setOptions(["Failed to get modpack options (" + err + ")"]);
