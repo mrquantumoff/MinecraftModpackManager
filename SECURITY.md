@@ -4,7 +4,9 @@
 
 
 x = any
+
 y = biggest possible value of x (e.g if latest version of the app is 14.5.1, then y in 14.y.x will mean that y = 5).
+
 a = any value that is not y
 
 | Version | Supported          |
