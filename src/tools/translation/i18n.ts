@@ -45,6 +45,43 @@ i18next
                     updating: "Updating modpack manager",
                     flatpakError: "Error while updating,this is common for flatpak. In case you are not running flatpak consider reading the error message"
                 }
+            },
+            uk:{
+                translation: {
+                    // Global
+                    name: "Ім'я",
+                    apply: "Поставити",
+                    clear: "Очистити",
+                    reload: "Перезавантажити",
+                    openModpacksFolder: "Відкрити папку з наборами модів",
+                    // Heading
+                    heading: "Менеджер модпаків майнкрафт",
+                    actions: "Дії",
+                    modpackreferencefileext: "Посилання на модпак",
+                    // Installer
+                    installMetadataQuestion: "Як ви хочете ввести свої данні?",
+                    manualInput: "Власні данні",
+                    referenceFile: "Посилання на модпак",
+                    enterModpackMeta: "Введіть данні свого модпаку",
+                    install: "Встановити",
+                    installError: "Помилка при встановленні модпаку",
+                    installSuccess: "Модпак встановлено.",
+                    noProperFile: "Гідного файлу не вибрано",
+                    modpackExists: "Цей модпак вже існує, чи ви впевнені, що хочете його перезаписати?",
+                    // Selector
+                    modpackClearedSuccess: "Папка модів очищена",
+                    failedToClearModpacks: "Помилка при очищенні папки модів (ви також можете її видалити)",
+                    failedToApplyModpacks: "Помилка при встановленні модпаку (ви також можете видалити папку модів)",
+                    tryAsAdmin: "спробуйте запустити застосунок від імені адміністратора",
+                    freeOrApply: "Будь-ласка встановіть модпак, або очистите папку модів",
+                    modpackSetSuccess: "Модпак поставлено.",
+                    notSymlinkedMods: "Попередження: при встановленні нового модпаку ваші існуючі данні можуть бути стертими!",
+                    dataLossWarning: "Попередження про потенційну втрату данних",
+                    failedToGetOptions: "Помилка при отриманні опцій",
+                    // Other
+                    updating: "Оновлення менеджера модпаків",
+                    flatpakError: "Помилка при оновленні, це нормально для flatpak. Якщо ви не використовуєте flatpak, я рекомендую прочитати помилку"
+                }
             }
         }
     })
