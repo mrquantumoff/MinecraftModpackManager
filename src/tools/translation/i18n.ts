@@ -16,12 +16,15 @@ i18next
                     apply: "Apply",
                     clear: "Clear",
                     reload: "Reload",
+                    languages: "Languages",
+                    close: "Close",
                     openModpacksFolder: "Open modpacks folder",
                     // Heading
                     heading: "Minecraft Modpack Manager",
                     actions: "Actions",
                     modpackreferencefileext: "Modpack reference",
                     // Installer
+                    installAModpack: "Install a modpack",
                     installMetadataQuestion: "How would you like to enter your modpack metadata?",
                     manualInput: "Manual Input",
                     referenceFile: "Reference file",
@@ -53,12 +56,15 @@ i18next
                     apply: "Поставити",
                     clear: "Очистити",
                     reload: "Перезавантажити",
+                    languages: "Мови",
+                    close: "Зачинити",
                     openModpacksFolder: "Відкрити папку з наборами модів",
                     // Heading
                     heading: "Менеджер модпаків майнкрафт",
                     actions: "Дії",
                     modpackreferencefileext: "Посилання на модпак",
                     // Installer
+                    installAModpack: "Встановити модпак",
                     installMetadataQuestion: "Як ви хочете ввести свої данні?",
                     manualInput: "Власні данні",
                     referenceFile: "Посилання на модпак",

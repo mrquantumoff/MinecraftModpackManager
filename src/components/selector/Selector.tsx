@@ -243,11 +243,8 @@ export default function Selector(props: IInstallerProps) {
               {t("actions")}
             </Button>
           </PopoverTrigger>
-          <PopoverContent width={"110%"}>
+          <PopoverContent width={"lg"}>
             <PopoverArrow />
-            <PopoverCloseButton onClick={() => {
-              setIsPopoverOpen(false);
-            }} />
             <PopoverBody>
               <ButtonGroup isAttached>
                 <Button disabled={autoCompleteValue === null} color="green.500" onClick={applyModpack} rightIcon={<CheckIcon />}>
@@ -256,6 +253,9 @@ export default function Selector(props: IInstallerProps) {
                 <Button onClick={setModsFree} color="red.500" rightIcon={<DeleteIcon />}>{t("clear")}</Button>
                 <Button onClick={func} color="blue.500" rightIcon={<RepeatIcon />}>{t("reload")}</Button>
               </ButtonGroup>
+              <PopoverCloseButton onClick={() => {
+                setIsPopoverOpen(false);
+              }} />
             </PopoverBody>
           </PopoverContent>
         </Popover>

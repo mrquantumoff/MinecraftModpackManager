@@ -266,9 +266,9 @@ export default function NewInstaller(props: IInstallerProps) {
             <div className="InstallerDialogs">
                 <Popover isOpen={isMainDialogOpen} onClose={() => { setIsMainDialogOpen(false) }}>
                     <PopoverTrigger>
-                        <Button className="InstallerButton button" isDisabled={!isButtonEnabled} onClick={async () => { await install() }} rightIcon={<DownloadIcon></DownloadIcon>}>Install a modpack</Button>
+                        <Button className="InstallerButton button" isDisabled={!isButtonEnabled} onClick={async () => { await install() }} rightIcon={<DownloadIcon></DownloadIcon>}>{t("installAModpack")}</Button>
                     </PopoverTrigger>
-                    <PopoverContent>
+                    <PopoverContent width={"max-content"}>
                         <PopoverArrow></PopoverArrow>
                         <PopoverHeader>{t("installMetadataQuestion")}</PopoverHeader>
                         <PopoverFooter>
