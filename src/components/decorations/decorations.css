@@ -1,10 +1,14 @@
 .decorations {
   display: grid;
-  margin-right: 1%;
+  position: relative;
+  margin-right: 2%;
   justify-content: end;
-  /* background-color: black; */
+}
+
+.decoration-item {
+  margin-top: 16px;
 }
 
 .decorations-in {
-  margin-top: 3%;
+  margin-top: 1%;
 }

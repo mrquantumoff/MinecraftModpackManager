@@ -12,4 +12,5 @@ export interface RefScheme {
 export interface InstallerConfig {
     setIsButtonEnabled: React.Dispatch<React.SetStateAction<boolean>>;
     setDownloadProgressElement: React.Dispatch<React.SetStateAction<any>>;
+    translate: any;
 }

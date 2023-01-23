@@ -15,6 +15,7 @@ import {
   AlertTitle
 } from '@chakra-ui/react'
 import { CheckIcon, ChevronDownIcon, DeleteIcon, RepeatIcon } from "@chakra-ui/icons";
+import { useTranslation } from "react-i18next"
 
 
 export default function Selector(props: IInstallerProps) {
@@ -24,7 +25,7 @@ export default function Selector(props: IInstallerProps) {
   const setIsAutoCompleteActive = props.setIsButtonEnabled;
   const [progress, setProgress] = useState<any>(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
-
+  const { t } = useTranslation();
   const openModpack = async () => {
     const mcFolder = await getMinecraftFolder();
     await invoke("open_modpacks_folder", { minecraftfolder: mcFolder });
@@ -41,7 +42,7 @@ export default function Selector(props: IInstallerProps) {
       await invoke("clear_modpack", { minecraftfolder: mcFolder });
       setIsAutoCompleteActive(true);
       setProgress(
-        <Alert status="success"><AlertTitle>Modpack cleared successfully</AlertTitle>
+        <Alert status="success"><AlertTitle>{t("modpackClearedSuccess")}</AlertTitle>
           <AlertIcon /></Alert>
       );
     } catch (err) {
@@ -49,7 +50,7 @@ export default function Selector(props: IInstallerProps) {
       if (os === "win32") {
         setProgress(
           <Alert status="error">
-            <AlertTitle>Failed to clear modpacks, try running the app as admin</AlertTitle>
+            <AlertTitle>{t("failedToClearModpacks")}, {t("tryAsAdmin")}</AlertTitle>
             <AlertIcon />
           </Alert>
         );
@@ -57,7 +58,7 @@ export default function Selector(props: IInstallerProps) {
         setProgress(
 
           <Alert status="error">
-            <AlertTitle>Failed to clear modpacks</AlertTitle>
+            <AlertTitle>{t("failedToClearModpacks")}</AlertTitle>
             <AlertIcon />
           </Alert>
         );
@@ -77,7 +78,7 @@ export default function Selector(props: IInstallerProps) {
         setProgress(
 
           <Alert status="warning">
-            <AlertTitle>Please choose a modpack or set mods free by clearing the modpack</AlertTitle>
+            <AlertTitle>{t("freeOrApply")}</AlertTitle>
             <AlertIcon />
           </Alert>
 
@@ -90,7 +91,7 @@ export default function Selector(props: IInstallerProps) {
       }
       setIsAutoCompleteActive(true);
       setProgress(<Alert status="success">
-        <AlertTitle>Modpack set successfully</AlertTitle>
+        <AlertTitle>{t("modpackSetSuccess")}</AlertTitle>
         <AlertIcon /></Alert>);
     } catch (err) {
       console.error(err);
@@ -98,13 +99,13 @@ export default function Selector(props: IInstallerProps) {
         setProgress(
 
           <Alert status="error">
-            <AlertTitle>Failed to clear modpacks, try running the app as admin</AlertTitle>
+            <AlertTitle>{t("failedToApplyModpacks")}, {t("tryAsAdmin")}</AlertTitle>
             <AlertIcon />
           </Alert>
 
         );
       } else {
-        setProgress(<Alert status="error">Failed to clear modpacks</Alert>);
+        setProgress(<Alert status="error">{t("failedToApplyModpacks")}</Alert>);
       }
       setIsAutoCompleteActive(true);
     }
@@ -126,7 +127,7 @@ export default function Selector(props: IInstallerProps) {
             <>
 
               <Alert status="info">
-                <AlertTitle>Updating modpack manager...</AlertTitle>
+                <AlertTitle>{t("updating")}...</AlertTitle>
                 <AlertIcon />
               </Alert>
               <br></br>
@@ -149,17 +150,17 @@ export default function Selector(props: IInstallerProps) {
             catch (error: any) {
               setIsAutoCompleteActive(true);
               setProgress(<Alert status="warning">
-                <AlertTitle>Error while updating,this is common for flatpak. In case you are not running flatpak consider reading the error message ({error})</AlertTitle>
+                <AlertTitle>{t("flatpakError")} ({error})</AlertTitle>
                 <AlertIcon />
               </Alert>);
             }
           };
-          setProgress(<>
 
+
+          setProgress(<>
             <Alert status="info"><AlertTitle>There might be an update available ({appVersion} to {update.manifest?.version}), since you're running GNU+Linux the app has no idea whether it can update itself or not, the only way to find out is to try, do you wish to try?</AlertTitle>
               <AlertIcon /></Alert>
             <Button onClick={up}>Try to update</Button>
-
           </>)
         }
       }
@@ -167,7 +168,7 @@ export default function Selector(props: IInstallerProps) {
     } catch (error: any) {
       if (os === "linux") {
         setIsAutoCompleteActive(true);
-        setProgress(<Alert status="info"><AlertTitle>Error while updating, this is common for flatpak. In case you are not running flatpak consider reading the error message ({error})</AlertTitle>
+        setProgress(<Alert status="info"><AlertTitle>{t("flatpakError")} ({error})</AlertTitle>
           <AlertIcon /></Alert>);
       }
       else {
@@ -185,8 +186,8 @@ export default function Selector(props: IInstallerProps) {
       });
       if (areModsSymlinks) {
         const confirmed = await confirm(
-          "Warning: it seems that your mods aren't symlinked to the modpacks directory, this means any action (clear/apply) will result deleting your currently installed mods",
-          "Data loss warning"
+          t("notSymlinkedMods"),
+          t("dataLossWarning") ?? "Data Loss Warning"
         );
         if (!confirmed) {
           exit(1);
@@ -204,7 +205,7 @@ export default function Selector(props: IInstallerProps) {
       setAutoCompleteValue(res[0]);
     } catch (err) {
       console.error(err);
-      setOptions(["Failed to get modpack options (" + err + ")"]);
+      setOptions([t("failedToGetOptions") + " (" + err + ")"]);
     }
   };
 
@@ -238,8 +239,8 @@ export default function Selector(props: IInstallerProps) {
         <Popover
           isOpen={isPopoverOpen}>
           <PopoverTrigger>
-            <Button onClick={() => { setIsPopoverOpen(true); }} rightIcon={<ChevronDownIcon />}>
-              Actions
+            <Button isDisabled={!isAutoCompleteActive} onClick={() => { setIsPopoverOpen(true); }} rightIcon={<ChevronDownIcon />}>
+              {t("actions")}
             </Button>
           </PopoverTrigger>
           <PopoverContent width={"110%"}>
@@ -250,10 +251,10 @@ export default function Selector(props: IInstallerProps) {
             <PopoverBody>
               <ButtonGroup isAttached>
                 <Button disabled={autoCompleteValue === null} color="green.500" onClick={applyModpack} rightIcon={<CheckIcon />}>
-                  Apply
+                  {t("apply")}
                 </Button>
-                <Button onClick={setModsFree} color="red.500" rightIcon={<DeleteIcon />}>Clear</Button>
-                <Button onClick={func} color="blue.500" rightIcon={<RepeatIcon />}>Reload</Button>
+                <Button onClick={setModsFree} color="red.500" rightIcon={<DeleteIcon />}>{t("clear")}</Button>
+                <Button onClick={func} color="blue.500" rightIcon={<RepeatIcon />}>{t("reload")}</Button>
               </ButtonGroup>
             </PopoverBody>
           </PopoverContent>
@@ -265,7 +266,7 @@ export default function Selector(props: IInstallerProps) {
         variant="solid"
         isDisabled={!isAutoCompleteActive}
         onClick={openModpack}>
-        Open modpacks folder
+        {t("openModpacksFolder")}
       </Button>
     </>
   );

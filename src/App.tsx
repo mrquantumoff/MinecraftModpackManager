@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProductTitle from "./components/heading/heading";
-import Installer from "./components/modpackInstaller-new/Installer";
+import Installer from "./components/modpackInstaller/Installer";
 import Selector from "./components/selector/Selector";
 import { ChakraProvider, useColorMode } from "@chakra-ui/react";
 import Decorations from "./components/decorations/decorations";

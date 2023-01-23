@@ -7,6 +7,7 @@ import getMinecraftFolder from "../../tools/getMinecraftFolder";
 import "./installer.css";
 import { open } from "@tauri-apps/api/dialog";
 import { readTextFile } from "@tauri-apps/api/fs";
+import { useTranslation } from "react-i18next";
 import { Alert, AlertIcon, AlertTitle, Button, ButtonGroup, CircularProgress, CloseButton, Input, Modal, Popover, PopoverArrow, PopoverContent, PopoverFooter, PopoverHeader, PopoverTrigger } from "@chakra-ui/react";
 import {
     ModalOverlay,
@@ -21,14 +22,14 @@ import { DownloadIcon } from "@chakra-ui/icons";
 export const RefInstall = async (config: InstallerConfig) => {
     const setIsButtonEnabled = config.setIsButtonEnabled;
     const setDownloadProgressElement = config.setDownloadProgressElement;;
-
+    const t = config.translate;
     setIsButtonEnabled(false);
     const selected = await open({
         multiple: false,
         directory: false,
         filters: [
             {
-                name: "Modpack Reference",
+                name: t("modpackreferencefileext"),
                 extensions: ["mcmodpackref", "mcmodpackref.json", "qntmdpck.json"],
             },
         ],
@@ -38,7 +39,7 @@ export const RefInstall = async (config: InstallerConfig) => {
             <>
 
                 <Alert className="alert" status="error">
-                    <AlertTitle>No proper file was selected.</AlertTitle>
+                    <AlertTitle>{t("noProperFile")}</AlertTitle>
                     <AlertIcon />
                 </Alert>
 
@@ -62,14 +63,14 @@ export const RefInstall = async (config: InstallerConfig) => {
             setDownloadProgressElement(
 
                 <Alert className="alert" status="success">
-                    <AlertTitle>Modpack has been installed successfully</AlertTitle>
+                    <AlertTitle>t("installSuccess")</AlertTitle>
                     <AlertIcon />
                 </Alert>
 
             );
         } catch (e: any) {
             if (e === "Modpack exists") {
-                let res = await ask("Modpack exists, do you want to overwrite it?", {
+                let res = await ask(t("modpackExists") ?? "Modpack exists, do you want to overwrite it? (this is a fallback message)", {
                     title: "Minecraft modpack manager",
                 });
                 if (res === true) {
@@ -85,7 +86,7 @@ export const RefInstall = async (config: InstallerConfig) => {
 
                             <Alert className="alert" status="success">
                                 <AlertTitle>
-                                    Modpack has been installed successfully
+                                    {t("installSuccess")}
                                 </AlertTitle>
                                 <AlertIcon />
                             </Alert>
@@ -95,7 +96,7 @@ export const RefInstall = async (config: InstallerConfig) => {
                         setDownloadProgressElement(
 
                             <Alert className="alert" status="error">
-                                <AlertTitle>Error while installing modpack ({err})</AlertTitle>
+                                <AlertTitle>{t("installError")} ({err})</AlertTitle>
                                 <AlertIcon />
                             </Alert>
 
@@ -105,7 +106,7 @@ export const RefInstall = async (config: InstallerConfig) => {
                     setDownloadProgressElement(
 
                         <Alert className="alert" status="error">
-                            <AlertTitle>Error while installing modpack ({e})</AlertTitle>
+                            <AlertTitle>{t("installError")} ({e})</AlertTitle>
                             <AlertIcon />
                         </Alert>
 
@@ -115,7 +116,7 @@ export const RefInstall = async (config: InstallerConfig) => {
                 setDownloadProgressElement(
 
                     <Alert className="alert" status="error">
-                        <AlertTitle>Error while installing modpack ({e})</AlertTitle>
+                        <AlertTitle>{t("installError")} ({e})</AlertTitle>
                         <AlertIcon />
                     </Alert>
 
@@ -128,6 +129,7 @@ export const RefInstall = async (config: InstallerConfig) => {
 
 export default function NewInstaller(props: IInstallerProps) {
 
+    const { t } = useTranslation();
 
     // States that may vary
     const [isMainDialogOpen, setIsMainDialogOpen] = useState<boolean>(false);
@@ -179,14 +181,14 @@ export default function NewInstaller(props: IInstallerProps) {
             setInfo(
 
                 <Alert className="alert" status="success">
-                    <AlertTitle>Modpack has been installed successfully</AlertTitle>
+                    <AlertTitle>t("installSuccess")</AlertTitle>
                     <AlertIcon />
                 </Alert>
 
             );
         } catch (e: any) {
             if (e === "Modpack exists") {
-                let res = await ask("Modpack exists, do you want to overwrite it?", {
+                let res = await ask(t("modpackExists"), {
                     title: "Minecraft modpack manager",
                 });
                 if (res === true) {
@@ -201,7 +203,7 @@ export default function NewInstaller(props: IInstallerProps) {
                         setInfo(
 
                             <Alert className="alert" status="success">
-                                <AlertTitle>Modpack has been installed successfully</AlertTitle>
+                                <AlertTitle>{t("installSuccess")}</AlertTitle>
                                 <AlertIcon />
                             </Alert>
 
@@ -210,7 +212,7 @@ export default function NewInstaller(props: IInstallerProps) {
                         setInfo(
 
                             <Alert className="alert" status="error">
-                                <AlertTitle> Error while installing modpack ({err})</AlertTitle>
+                                <AlertTitle>{t("installError")} ({err})</AlertTitle>
                                 <AlertIcon />
                             </Alert>
 
@@ -220,7 +222,7 @@ export default function NewInstaller(props: IInstallerProps) {
                     setInfo(
 
                         <Alert className="alert" status="error">
-                            <AlertTitle> Error while installing modpack ({e})</AlertTitle>
+                            <AlertTitle>{t("installError")} ({e})</AlertTitle>
                             <AlertIcon />
                         </Alert>
 
@@ -230,7 +232,7 @@ export default function NewInstaller(props: IInstallerProps) {
                 setInfo(
 
                     <Alert className="alert" status="error">
-                        <AlertTitle> Error while installing modpack ({e})</AlertTitle>
+                        <AlertTitle>{t("installError")}({e})</AlertTitle>
                         <AlertIcon />
                     </Alert>
 
@@ -244,7 +246,8 @@ export default function NewInstaller(props: IInstallerProps) {
         setIsMainDialogOpen(false);
         await RefInstall({
             setDownloadProgressElement: setInfo,
-            setIsButtonEnabled: setIsButtonEnabled
+            setIsButtonEnabled: setIsButtonEnabled,
+            translate: t,
         })
     }
 
@@ -260,11 +263,6 @@ export default function NewInstaller(props: IInstallerProps) {
     }
     return (
         <>
-
-            {/* <div className="newInstaller">
-                <Button className="InstallerButton button" rightIcon={<DownloadIcon />} isDisabled={!isButtonEnabled} onClick={async () => { await install() }}>Install a modpack</Button>
-            </div> */}
-
             <div className="InstallerDialogs">
                 <Popover isOpen={isMainDialogOpen} onClose={() => { setIsMainDialogOpen(false) }}>
                     <PopoverTrigger>
@@ -272,11 +270,11 @@ export default function NewInstaller(props: IInstallerProps) {
                     </PopoverTrigger>
                     <PopoverContent>
                         <PopoverArrow></PopoverArrow>
-                        <PopoverHeader>How would you like to enter your modpack metadata?</PopoverHeader>
+                        <PopoverHeader>{t("installMetadataQuestion")}</PopoverHeader>
                         <PopoverFooter>
                             <ButtonGroup isAttached>
-                                <Button colorScheme="telegram" onClick={ManualInstall} className="dialog-buttons">Manual Input</Button>
-                                <Button colorScheme="orange" onClick={ReferenceInstall} className="dialog-buttons">Reference file</Button>
+                                <Button colorScheme="telegram" onClick={ManualInstall} className="dialog-buttons">{t("manualInput")}</Button>
+                                <Button colorScheme="orange" onClick={ReferenceInstall} className="dialog-buttons">{t("referenceFile")}</Button>
                             </ButtonGroup>
                         </PopoverFooter>
                     </PopoverContent>
@@ -285,10 +283,10 @@ export default function NewInstaller(props: IInstallerProps) {
                     <ModalOverlay></ModalOverlay>
                     <ModalContent>
                         <div className="closebutton-separator"></div>
-                        <ModalHeader>Please enter your modpack metadata</ModalHeader>
+                        <ModalHeader>{t("enterModpackMeta")}</ModalHeader>
                         <ModalBody>
                             {/* <br></br> */}
-                            <Input placeholder="Name" onChange={(event: any) => {
+                            <Input placeholder={t("name") ?? "Name"} onChange={(event: any) => {
                                 modpackName = event.target.value;
                             }}></Input>
                             <br />
@@ -299,7 +297,7 @@ export default function NewInstaller(props: IInstallerProps) {
 
                         </ModalBody>
                         <ModalFooter>
-                            <Button colorScheme="blue" onClick={closeSubDialog}>Install</Button>
+                            <Button colorScheme="blue" onClick={closeSubDialog}>{t("install")}</Button>
                             <ModalCloseButton onClick={() => {
                                 setIsSubDialogOpen(false);
                             }}></ModalCloseButton>
@@ -313,3 +311,5 @@ export default function NewInstaller(props: IInstallerProps) {
     )
 
 }
+
+
