@@ -45,7 +45,7 @@
       },
       "externalBin": [],
       "icon": ["icons/logo.png", "icons/logo.ico"],
-      "identifier": "com.mrquantumoff.mcmodpackmanager",
+      "identifier": "dev.mrquantumoff.mcmodpackmanager",
       "appimage": {
         "bundleMediaFramework": false
       },
