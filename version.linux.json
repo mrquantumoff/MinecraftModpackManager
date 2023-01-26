@@ -1,0 +1,11 @@
+{
+    "version": "5.0.2",
+    "notes": "Update",
+    "pub_date": "2022-10-21T10:50:59Z",
+    "platforms":{
+        "linux-x86_64": {
+          "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTEUremJpKzRDT0I5WkhQbHdHQk5aaEg1cStNQ0VRRnhtblBpb0YzVitiNk1sWnZkR2c4VlRUMWZjcUNxeW8wblFLbGtkaW44VHZaRkFuOTdNSFNVRVEwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc0NzQ0OTExCWZpbGU6bWluZWNyYWZ0LW1vZHBhY2stbWFuYWdlcl81LjAuMl9hbWQ2NC5BcHBJbWFnZS50YXIuZ3oKbXArbC9Ja1dnLzF4dVpOOThRTy8yVnpsdUFJdGRxa0Yxa1JPTDZjZmhvdThHUXNPN0JsTlVvL0orcjljVGt6eUVRb2ZvM0ovUHVzV3NCSUpJaXNqQUE9PQo=",
+          "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v5.0.2/minecraft-modpack-manager_5.0.2_amd64.AppImage.tar.gz"
+        }
+    }
+}
