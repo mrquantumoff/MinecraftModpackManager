@@ -1,5 +1,10 @@
 # Minecraft modpack manager
 
+# DEPRECATED: Please do not submit any new PRs here. Instead submit them to the [flutter rewrite of the project](https://github.com/mrquantumoff/mcmodpackmanager_reborn). This repository will be archived as soon as I will finalize the flutter rewrite of the project.
+
+
+
+
 ![](https://github.com/mrquantumoff/MinecraftModpackManager/raw/master/Screenshot.png)
 
 ### Note: On GNU+Linux I highly recommend using flatpak binaries
