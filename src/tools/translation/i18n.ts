@@ -46,6 +46,8 @@ i18next
                     failedToGetOptions: "Failed to get modpack options",
                     // Other
                     updating: "Updating modpack manager",
+                    rewrite: "Minecraft Modpack Manager has been rewritten in Dart and Flutter. Please download a new version for your system using GitHub.",
+                    openRepo: "Open the new GitHub Repo",
                     flatpakError: "Error while updating,this is common for flatpak. In case you are not running flatpak consider reading the error message"
                 }
             },
@@ -86,6 +88,8 @@ i18next
                     failedToGetOptions: "Помилка при отриманні опцій",
                     // Other
                     updating: "Оновлення менеджера модпаків",
+                    openRepo: "Відкрити новий репозиторій програми",
+                    rewrite: "Цю програму було переписано на Dart та Flutter. Будь ласка завантажте оновлену версію програми з GitHub.",
                     flatpakError: "Помилка при оновленні, це нормально для flatpak. Якщо ви не використовуєте flatpak, я рекомендую прочитати помилку"
                 }
             }

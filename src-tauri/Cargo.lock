@@ -1547,6 +1547,7 @@ name = "mcmodpackmanager"
 version = "5.0.2"
 dependencies = [
  "futures",
+ "open",
  "reqwest",
  "serde",
  "serde_json",

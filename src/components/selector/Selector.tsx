@@ -9,7 +9,7 @@ import { confirm } from "@tauri-apps/api/dialog";
 import { IInstallerProps } from "../../Interfaces";
 
 import { getVersion } from '@tauri-apps/api/app';
-import { AlertIcon, Button, ButtonGroup, CircularProgress, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverTrigger, Select } from "@chakra-ui/react";
+import { AlertIcon, Button, ButtonGroup, Center, CircularProgress, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverTrigger, Select } from "@chakra-ui/react";
 import {
   Alert,
   AlertTitle
@@ -117,66 +117,24 @@ export default function Selector(props: IInstallerProps) {
   const func = async () => {
     setIsPopoverOpen(false);
     const os = await platform();
-    try {
-      const update = await checkUpdate();
-      const appVersion = await getVersion();
-      if (update.shouldUpdate) {
-        if (os === "darwin" || os === "win32") {
-          setIsAutoCompleteActive(false);
-          setProgress(
-            <>
-
-              <Alert status="info">
-                <AlertTitle>{t("updating")}...</AlertTitle>
-                <AlertIcon />
-              </Alert>
-              <br></br>
-              <CircularProgress isIndeterminate={true} />
-
-            </>
-          );
-
-          await installUpdate();
-          // install complete, restart app
-          await relaunch();
-        }
-        else {
-          const up = async () => {
-            try {
-              setIsAutoCompleteActive(false);
-              await installUpdate()
-              await relaunch();
-            }
-            catch (error: any) {
-              setIsAutoCompleteActive(true);
-              setProgress(<Alert status="warning">
-                <AlertTitle>{t("flatpakError")} ({error})</AlertTitle>
-                <AlertIcon />
-              </Alert>);
-            }
-          };
-
-
-          setProgress(<>
-            <Alert status="info"><AlertTitle>There might be an update available ({appVersion} to {update.manifest?.version}), since you're running GNU+Linux the app has no idea whether it can update itself or not, the only way to find out is to try, do you wish to try?</AlertTitle>
-              <AlertIcon /></Alert>
-            <Button onClick={up}>Try to update</Button>
-          </>)
-        }
-      }
-
-    } catch (error: any) {
-      if (os === "linux") {
-        setIsAutoCompleteActive(true);
-        setProgress(<Alert status="info"><AlertTitle>{t("flatpakError")} ({error})</AlertTitle>
-          <AlertIcon /></Alert>);
-      }
-      else {
-        setProgress(<Alert status="error"><AlertTitle>{error}</AlertTitle>
-          <AlertIcon /></Alert>);
-      }
-      console.log(error);
+    const update = await checkUpdate();
+    const appVersion = await getVersion();
+    if (update.shouldUpdate) {
+      await installUpdate();
+      await relaunch();
     }
+
+    setProgress(
+      <>
+        <div className="rewrite">
+          <Alert className="rewrite" status="warning">{t("rewrite")}</Alert>
+          <Center>
+            <Button onClick={async () => await invoke("open_repo")}>{t("openRepo")}</Button>
+          </Center>
+        </div>
+      </>
+    );
+    setIsAutoCompleteActive(true);
 
     const mcFolder = await getMinecraftFolder();
 

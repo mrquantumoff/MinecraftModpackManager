@@ -30,9 +30,18 @@ async fn main() {
             // close_splashscreen,
             install_mc_mods,
             is_dev_env,
+            open_repo
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+}
+
+/// Open the new GitHub repo in the browser
+#[tauri::command]
+async fn open_repo() -> Result<(), ()> {
+    let repo_url = "https://github.com/mrquantumoff/mcmodpackmanager_reborn.git";
+    open::that(repo_url).unwrap();
+    std::process::exit(0);
 }
 
 /// Shoud create a new folder called Modpacks in .minecraft (if not exists)

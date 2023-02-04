@@ -1,13 +1,13 @@
 {
   "build": {
-    "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "cd .. && npm run dev",
+    "beforeBuildCommand": "cd .. && npm run build",
     "devPath": "http://localhost:1420",
     "distDir": "../dist"
   },
   "package": {
     "productName": "Minecraft Modpack Manager",
-    "version": "5.0.2"
+    "version": "5.0.3"
   },
   "tauri": {
     "allowlist": {
@@ -37,7 +37,7 @@
     "bundle": {
       "active": true,
       "category": "Utility",
-      "copyright": "2022, Mr. Quantum (Demir Yerli) and contributors with open source libraries",
+      "copyright": "2023, Mr. Quantum (Demir Yerli) and contributors with open source libraries",
       "deb": {
         "depends": [],
         "files": {

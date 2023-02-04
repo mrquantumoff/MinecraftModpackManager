@@ -9,7 +9,7 @@ import { invoke } from "@tauri-apps/api";
 
 export default function App() {
 
-  const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(true);
+  const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(false);
   const [downloadProgressElement, setDownloadProgressElement] = useState<any>();
   invoke("is_dev_env").catch(() => { }).then((res) => {
     console.log(res);
