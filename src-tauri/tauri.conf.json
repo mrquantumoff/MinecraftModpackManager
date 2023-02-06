@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "Minecraft Modpack Manager",
-    "version": "5.999.999"
+    "version": "5.254.254"
   },
   "tauri": {
     "allowlist": {
