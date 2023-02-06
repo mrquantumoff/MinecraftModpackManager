@@ -1,15 +1,15 @@
 {
-  "version": "5.0.2",
+  "version": "5.254.524",
   "notes": "Update",
   "pub_date": "2022-10-21T10:50:59Z",
   "platforms": {
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTE00VzNad0trNlR4SGtQaWZBdW91WEZlUkJyc2RoRFhrbE1xSzd3V2M0TVV3eGxSQVhBT2k0TlUyUUIxdVJKQTQwaTlMTDhYdTFIRUs3eUpIQmFnMXdjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc0NzQ1MzMwCWZpbGU6TWluZWNyYWZ0IE1vZHBhY2sgTWFuYWdlci5hcHAudGFyLmd6CjVBeS9Dckx2UWtrSjBrTTgwdmRPU1dqUnE5bkYwMUNiMlpOSlVzVkthelRtY2NyR2JOMlV4VVh4NHB0T0wrQjhKRC96elFRVHRvbnVudXJyNmthUEJnPT0K",
-      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v5.0.2/Minecraft.Modpack.Manager.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTEprdUwrWERCSzRrdUlYZ1FScjBKUG1BTm9CSDJzTC9KbURwUmRLVXljekhlRjlsRVZVRUpQNUIrZDVUWFA0S1pOZWJFd0U4UmxTenRLc1VrVUoxbWdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc1Njg0MTg2CWZpbGU6TWluZWNyYWZ0IE1vZHBhY2sgTWFuYWdlci5hcHAudGFyLmd6CmpORnJnVzJ3TFZQeFNkbWNjQWpTQU1XVFc0bFJmL1ZrQXBGb2xxZURCaFN6cDNpTk4vSTlEV3RkVVNvYkN6TzlRNWVFMDhNTnBGcElQbERidkdDbkF3PT0K",
+      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v5.254.254/Minecraft.Modpack.Manager.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTE9vYlB2SWpKeEVNcURqQmc4VFhNbS9CdDNEcTlwZFFqNi9qcWF5VnhrL0tNWWdRa2R3R2ZFSlU4NUhLeS9vaDdtM3lqeWFac0MweUJNVUg4K0YrTmc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc0NzQ1NDYxCWZpbGU6TWluZWNyYWZ0IE1vZHBhY2sgTWFuYWdlcl81LjAuMl94NjRfZW4tVVMubXNpLnppcApjQUIwNmZzQTJDZkFzNTVIQ01lL0NyKzhYbDF0d0xoV2lzZDR6YVoxMEtUNUY2aXBvcFJ3S2twaEUwQWFPdjhHNkZqZkFVb0F4ay9qRWVHU0hyeWhBdz09Cg==",
-      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v5.0.2/Minecraft.Modpack.Manager_5.0.2_x64_en-US.msi.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTNkg1VEIwcG5GTERtcUYrdFNpTURWUUFrSVZEbURXdGU4SERNVkl3UmQ0OC9pbVRuRDBleXk0b3hiN1IvTFIwQ3JtNWJYL1Y3NVVwSGlEM1pHa2FySExSNmNiNTVRQ3dvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc1Njg0MTYzCWZpbGU6TWluZWNyYWZ0IE1vZHBhY2sgTWFuYWdlcl81LjI1NC4yNTRfeDY0X2VuLVVTLm1zaS56aXAKSGJoZnNiaGlHdDhVdmQ1RkF3YUhXTkJ5bG4xckZtS25xWHlIb0xhUGJEK0xqRGhXdEhkTVA3Y01jWWZ2QmdTc0dkTjJoTmZOWG1wSERWQjVVTHpaRFE9PQo=",
+      "url": "https://github.com/mrquantumoff/MinecraftModpackManager/releases/download/v5.254.254/Minecraft.Modpack.Manager_5.254.254_x64_en-US.msi.zip"
     }
   }
 }
